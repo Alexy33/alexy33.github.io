@@ -2,7 +2,7 @@
 title: "TryHackMe - Hashing Basics"
 date: 2025-10-12 14:30:00 +0100
 categories: [TryHackMe, Learning]
-tags: [hashing, cryptography, md5, sha256, cracking]
+tags: [hashing, cryptography, cracking]
 description: "Comprendre les fondamentaux du hashing et apprendre à identifier et cracker différents types de hash"
 image:
   path: /assets/img/posts/tryhackme-hashing.png
