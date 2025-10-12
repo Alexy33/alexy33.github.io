@@ -2,6 +2,12 @@
 
 source "https://rubygems.org"
 
+gem "erb"
+gem "logger"
+gem "csv"
+gem "base64"
+gem "bigdecimal"
+
 gem "jekyll-theme-chirpy", "~> 7.3", ">= 7.3.1"
 
 gem "html-proofer", "~> 5.0", group: :test
