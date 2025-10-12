@@ -4,6 +4,8 @@ icon: fas fa-info-circle
 order: 4
 ---
 
+![Techpriest](/assets/img/about/mechanicus-techpriest.gif)
+
 ## 👋 Bienvenue sur mon blog !
 
 Salut à toi ! Merci d'être passé par ici. Si tu as pris le temps de regarder quelques-uns de mes write-ups, tu as dû voir que je suis en plein apprentissage dans le monde de la cybersécurité.
