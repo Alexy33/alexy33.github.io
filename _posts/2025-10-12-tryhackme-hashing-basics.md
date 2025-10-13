@@ -303,3 +303,5 @@ base64 -d decode-this.txt
 - Le hashing sert aussi à vérifier l'intégrité des fichiers
 
 **Room complétée** ✅
+
+{% include comments.html %}
