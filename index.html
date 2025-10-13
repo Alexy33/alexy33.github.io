@@ -1,4 +1,265 @@
 ---
-layout: home
-# Index page
+layout: page
+title: Accueil
 ---
+
+<style>
+  .welcome-section {
+    text-align: center;
+    padding: 2rem 0;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .mechanicus-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .mechanicus-icon {
+    width: 80px;
+    height: 80px;
+    opacity: 0.8;
+  }
+
+  .welcome-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--heading-color);
+    font-weight: 700;
+  }
+
+  .welcome-section > p {
+    font-size: 1.1rem;
+    color: var(--text-muted-color);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .omnissiah-quote {
+    font-style: italic;
+    color: var(--text-muted-color);
+    border-left: 3px solid var(--text-muted-color);
+    padding-left: 1rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    text-align: left;
+  }
+
+  .quick-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .quick-links .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    background: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+  }
+
+  .quick-links .btn:hover {
+    background: var(--button-bg);
+    border-color: var(--link-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .latest-posts {
+    margin-top: 4rem;
+    text-align: left;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.8rem;
+    margin: 0;
+    color: var(--heading-color);
+  }
+
+  .mechanicus-divider {
+    width: 40px;
+    height: 40px;
+    opacity: 0.6;
+  }
+
+  .post-card {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+  }
+
+  .post-card:hover {
+    border-color: var(--link-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .post-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+  }
+
+  .post-card h3 a {
+    color: var(--heading-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .post-card h3 a:hover {
+    color: var(--link-color);
+  }
+
+  .post-meta {
+    color: var(--text-muted-color);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-card p {
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  .view-all-container {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--button-bg);
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid var(--border-color);
+  }
+
+  .view-all:hover {
+    background: var(--link-color);
+    color: white;
+    border-color: var(--link-color);
+    transform: translateY(-2px);
+  }
+
+  .tech-priest-gif {
+    text-align: center;
+    margin: 3rem 0;
+  }
+
+  .tech-priest-gif img {
+    max-width: 500px;
+    border-radius: 8px;
+    opacity: 0.9;
+  }
+
+  @media (max-width: 768px) {
+    .mechanicus-header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .mechanicus-icon {
+      width: 60px;
+      height: 60px;
+    }
+
+    .welcome-section h1 {
+      font-size: 2rem;
+    }
+    
+    .quick-links {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 0 1rem;
+    }
+    
+    .quick-links .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+
+<div class="welcome-section">
+  <div class="mechanicus-header">
+    <h1>Bienvenue sur mon blog</h1>
+  </div>
+  
+  <p>Salut ! Je suis Alexy, passionné de cybersécurité et actuellement en apprentissage. Je documente ici mon parcours à travers les CTF, le pentesting et tout ce qui touche à la sécurité offensive.</p>
+
+  <div class="omnissiah-quote">
+    "De l'ignorance de la technologie vient le danger. De la connaissance vient le salut."
+    <br><small>— Proverbe du Mechanicus</small>
+  </div>
+  
+  <div class="quick-links">
+    <a href="/archives/" class="btn">📝 Mes write-ups</a>
+    <a href="/about/" class="btn">👤 À propos</a>
+    <a href="/categories/" class="btn">🏷️ Catégories</a>
+    <a href="/tags/" class="btn">🔖 Tags</a>
+  </div>
+</div>
+
+<div class="tech-priest-gif">
+  <img src="https://media1.tenor.com/m/zw3HWomJs3YAAAAd/darktide-adeptus-mechanicus.gif" alt="Tech-Priest">
+</div>
+
+<div class="latest-posts">
+  <div class="section-header">
+    <h2>Derniers articles</h2>
+  </div>
+  
+  {% for post in site.posts limit:3 %}
+    <article class="post-card">
+      <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+      <p class="post-meta">📅 {{ post.date | date: "%d %B %Y" }} | {% if post.categories %}🏷️ {{ post.categories | join: ", " }}{% endif %}</p>
+      {% if post.description %}
+        <p>{{ post.description }}</p>
+      {% endif %}
+    </article>
+  {% endfor %}
+  
+  <div class="view-all-container">
+    <a href="/archives/" class="view-all">
+      Voir tous les articles
+      <span>→</span>
+    </a>
+  </div>
+</div>
+
+<div style="text-align: center; margin-top: 3rem; padding: 2rem; border-top: 1px solid var(--border-color);">
+  <p style="color: var(--text-muted-color); font-style: italic;">
+    "La connaissance est pouvoir, gardez-la bien." ⚙️
+  </p>
+</div>
