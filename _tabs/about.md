@@ -6,13 +6,13 @@ order: 4
 
 ![Techpriest](/assets/img/about/mechanicus-techpriest.gif)
 
-## 👋 Bienvenue sur mon blog !
+## Bienvenue sur mon blog !
 
 Salut à toi ! Merci d'être passé par ici. Si tu as pris le temps de regarder quelques-uns de mes write-ups, tu as dû voir que je suis en plein apprentissage dans le monde de la cybersécurité.
 
 Je m'appelle **Alexy**, et ce blog est mon carnet de bord où je documente tout ce que j'apprends : CTF, pentesting, nouvelles techniques, galères et réussites... Bref, tout mon parcours dans la cyber !
 
-## 🎯 Pourquoi ce blog ?
+## Pourquoi ce blog ?
 
 J'ai créé ce site pour plusieurs raisons :
 - **Documenter mon apprentissage** : écrire m'aide à mieux comprendre et retenir
@@ -26,10 +26,10 @@ J'ai créé ce site pour plusieurs raisons :
 ## 🔐 Ce que je fais
 
 Je suis actuellement en train d'apprendre la cybersécurité, principalement à travers :
-- 🟩 **TryHackMe** : ma plateforme principale pour apprendre
-- 🟧 **HackTheBox** : pour les challenges plus poussés
-- 📚 **Lecture** : articles, docs, CVE, tout ce qui m'aide à progresser
-- 🛠️ **Projets perso** : scripts et outils que je développe pour apprendre
+- **TryHackMe** : ma plateforme principale pour apprendre
+- **HackTheBox** : pour les challenges plus poussés
+- **Lecture** : articles, docs, CVE, tout ce qui m'aide à progresser
+- **Projets perso** : scripts et outils que je développe pour apprendre
 
 ## 💻 Mes compétences (en développement !)
 
@@ -40,7 +40,7 @@ Je suis actuellement en train d'apprendre la cybersécurité, principalement à 
 - **Cracking** : Hashcat, John the Ripper
 
 ### Systèmes & Outils
-- **Linux** : Arch (btw 😉), Kali, configuration et administration
+- **Linux** : Arch (btw), Kali, configuration et administration
 - **Scripting** : Python et Bash pour l'automatisation
 - **Forensics** : Volatility, Autopsy, analyse de fichiers
 - **Réseau** : TCP/IP, Wireshark, analyse de trafic
@@ -67,11 +67,11 @@ Je suis actuellement en train d'apprendre la cybersécurité, principalement à 
 ## En dehors de la cyber
 
 Quand je ne suis pas en train de cracker des hash ou d'exploiter des vulnérabilités :
-- 🎯 Je résous d'autres CTF pour le fun
-- 💾 Je bidouille avec Linux et je customise mon setup
-- 📚 Je lis des articles techniques et de la doc
-- 🎲 Je suis fan de Warhammer 40k (d'où les quelques références Mechanicus ⚙️)
-- 🎮 Je sers la Super Terre !
+- Je résous d'autres CTF pour le fun
+- Je bidouille avec Linux et je customise mon setup
+- Je lis des articles techniques et de la doc
+- Je suis fan de Warhammer 40k (d'où les quelques références Mechanicus ⚙️)
+- Je sers la Super Terre !
 
 ## 📫 On reste en contact ?
 
@@ -94,7 +94,7 @@ La communauté cyber est géniale, et c'est grâce aux partages et à l'entraide
 
 ---
 
-**Merci encore de ta visite, et à bientôt sur le blog !** 👋
+**Merci encore de ta visite, et à bientôt sur le blog !**
 
 *Dernière mise à jour : Octobre 2025*
 
