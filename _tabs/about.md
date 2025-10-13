@@ -48,6 +48,8 @@ Je suis actuellement en train d'apprendre la cybersécurité, principalement à 
 > Je suis loin d'être un expert, mais j'apprends chaque jour un peu plus. Si tu vois des erreurs dans mes write-ups ou que tu as de meilleurs techniques, n'hésite vraiment pas à me le dire !
 {: .prompt-info }
 
+![Techpriest](https://media1.tenor.com/m/xp8XacjuoHkAAAAC/techpriest-warhammer40k.gif)
+
 ## 📊 Mes plateformes
 
 | Plateforme | Profil |
