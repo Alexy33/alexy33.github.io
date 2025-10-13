@@ -1,43 +1,91 @@
-# Chirpy Starter
+# 🔐 My Cyber Blog
 
-[![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy)][gem]&nbsp;
-[![GitHub license](https://img.shields.io/github/license/cotes2020/chirpy-starter.svg?color=blue)][mit]
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-success)](https://alexy33.github.io)
+[![Ruby](https://img.shields.io/badge/Ruby-3.4.7-red)](https://www.ruby-lang.org/)
+[![Jekyll](https://img.shields.io/badge/Jekyll-Static%20Site-blue)](https://jekyllrb.com/)
 
-When installing the [**Chirpy**][chirpy] theme through [RubyGems.org][gem], Jekyll can only read files in the folders
-`_data`, `_layouts`, `_includes`, `_sass` and `assets`, as well as a small part of options of the `_config.yml` file
-from the theme's gem. If you have ever installed this theme gem, you can use the command
-`bundle info --path jekyll-theme-chirpy` to locate these files.
+> Personal cybersecurity blog sharing knowledge, writeups, and thoughts on infosec.
 
-The Jekyll team claims that this is to leave the ball in the user’s court, but this also results in users not being
-able to enjoy the out-of-the-box experience when using feature-rich themes.
+## 🌐 Live Site
 
-To fully use all the features of **Chirpy**, you need to copy the other critical files from the theme's gem to your
-Jekyll site. The following is a list of targets:
+Visit the blog at: **[alexy33.github.io](https://alexy33.github.io)**
 
-```shell
+## 📝 About
+
+This blog is dedicated to cybersecurity topics, including:
+
+- 🛡️ Security research and analysis
+- 🔍 CTF writeups and challenges
+- 💻 Hacking techniques and methodologies
+- 🎓 Educational content for cybersecurity enthusiasts
+- 🚀 Personal projects and experiments
+
+## 🛠️ Built With
+
+- **Jekyll** - Static site generator
+- **Ruby 3.4.7** - Programming language
+- **GitHub Pages** - Hosting platform
+- **GitHub Actions** - CI/CD pipeline
+
+## 🚀 Local Development
+
+### Prerequisites
+
+- Ruby 3.4.7
+- Bundler
+- Git
+
+## 📂 Project Structure
+
+```
 .
-├── _config.yml
-├── _plugins
-├── _tabs
-└── index.html
+├── _posts/          # Blog posts
+├── _layouts/        # Page templates
+├── _includes/       # Reusable components
+├── assets/          # CSS, JS, images
+├── _config.yml      # Jekyll configuration
+└── README.md        # This file
 ```
 
-To save you time, and also in case you lose some files while copying, we extract those files/configurations of the
-latest version of the **Chirpy** theme and the [CD][CD] workflow to here, so that you can start writing in minutes.
+## ✍️ Creating a New Post
 
-## Usage
+Create a new file in `_posts/` with the format:
 
-Check out the [theme's docs](https://github.com/cotes2020/jekyll-theme-chirpy/wiki).
+```
+YYYY-MM-DD-title-of-post.md
+```
 
-## Contributing
+Use the following front matter:
 
-This repository is automatically updated with new releases from the theme repository. If you encounter any issues or want to contribute to its improvement, please visit the [theme repository][chirpy] to provide feedback.
+```yaml
+---
+layout: post
+title: "Your Post Title"
+date: YYYY-MM-DD HH:MM:SS
+categories: [category1, category2]
+tags: [tag1, tag2]
+---
 
-## License
+Your content here...
+```
 
-This work is published under [MIT][mit] License.
+## 🤝 Contributing
 
-[gem]: https://rubygems.org/gems/jekyll-theme-chirpy
-[chirpy]: https://github.com/cotes2020/jekyll-theme-chirpy/
-[CD]: https://en.wikipedia.org/wiki/Continuous_deployment
-[mit]: https://github.com/cotes2020/chirpy-starter/blob/master/LICENSE
+This is a personal blog, but suggestions and corrections are welcome!
+
+1. Fork the repository
+2. Create a feature branch
+3. Submit a pull request
+
+## 📜 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 📫 Contact
+
+- GitHub: [@Alexy33](https://github.com/Alexy33)
+- Blog: [alexy33.github.io](https://alexy33.github.io)
+
+---
+
+**Made with ❤️ and Jekyll**
