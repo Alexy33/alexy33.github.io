@@ -33,6 +33,9 @@ Je suis actuellement en train d'apprendre la cybersécurité, principalement à 
 
 [![TryHackMe Badge](https://tryhackme-badges.s3.amazonaws.com/Xufox.png)](https://tryhackme.com/p/Xufox)
 
+> Attention ceci est une image **STATIC** donc je ne l'ai peut être pas mis a jour pour l'instant donc allez consulter mon profil si vous voulez voir mes vrais stats !
+{: .prompt-danger }
+
 ## 💻 Mes compétences (en développement !)
 
 ### Pentesting & Exploitation
