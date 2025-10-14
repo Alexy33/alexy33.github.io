@@ -9,13 +9,13 @@ image:
   alt: "TryHackMe Hashing Basics Room"
 ---
 
-## 📋 Room Info
+## Room Info
 
 Room facile sur les bases du hashing : comprendre ce qu'est un hash, les identifier et les cracker.
 
 **Lien :** [Hashing Basics](https://tryhackme.com/room/hashingbasics)
 
-## 🔑 L'essentiel
+## L'essentiel
 
 Un hash = empreinte unique et irréversible de données. Les plus courants :
 - **MD5** (32 chars) : obsolète mais encore croisé
@@ -24,7 +24,7 @@ Un hash = empreinte unique et irréversible de données. Les plus courants :
 
 ---
 
-## 🎯 Solutions des Tasks
+## Solutions des Tasks
 
 ### Task 1 - Introduction
 
@@ -294,14 +294,6 @@ base64 -d decode-this.txt
 
 ---
 
-## 💡 Ce que j'ai retenu
-
-- Les hash MD5 et SHA-256 se crackent facilement avec des wordlists comme rockyou.txt
-- Il est essentiel d'identifier le bon type de hash avant d'utiliser hashcat
-- Les salts rendent le cracking beaucoup plus difficile
-- Hashcat est un outil puissant avec de nombreux modes pour différents algorithmes
-- Le hashing sert aussi à vérifier l'intégrité des fichiers
-
-**Room complétée** ✅
+**Room complétée**
 
 {% include comments.html %}
