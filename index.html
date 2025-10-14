@@ -192,7 +192,7 @@ title: Accueil
     }
 
     .techpriest-gif img {
-        max-width: 100%;
+      max-width: 100%;
     }
 
     .mechanicus-icon {
@@ -203,13 +203,13 @@ title: Accueil
     .welcome-section h1 {
       font-size: 2rem;
     }
-    
+
     .quick-links {
       flex-direction: column;
       align-items: stretch;
       padding: 0 1rem;
     }
-    
+
     .quick-links .btn {
       width: 100%;
       justify-content: center;
@@ -221,41 +221,52 @@ title: Accueil
   <div class="mechanicus-header">
     <h1>Bienvenue sur mon blog</h1>
   </div>
-  
-  <p>Salut ! Je suis Alexy, passionné de cybersécurité et actuellement en apprentissage. Je documente ici mon parcours à travers les CTF, le pentesting et tout ce qui touche à la sécurité offensive.</p>
+
+  <p>
+    Salut ! Je suis Alexy, passionné de cybersécurité et actuellement en
+    apprentissage. Je documente ici mon parcours à travers les CTF, le
+    pentesting et tout ce qui touche à la sécurité offensive.
+  </p>
 
   <div class="omnissiah-quote">
-    "De l'ignorance de la technologie vient le danger. De la connaissance vient le salut."
-    <br><small>— Proverbe du Mechanicus</small>
+    "De l'ignorance de la technologie vient le danger. De la connaissance vient
+    le salut."
+    <br /><small>— Proverbe du Mechanicus</small>
   </div>
-  
+
   <div class="quick-links">
-    <a href="/archives/" class="btn">📝 Mes write-ups</a>
-    <a href="/about/" class="btn">👤 À propos</a>
-    <a href="/categories/" class="btn">🏷️ Catégories</a>
-    <a href="/tags/" class="btn">🔖 Tags</a>
+    <a href="/archives/" class="btn">Mes write-ups</a>
+    <a href="/about/" class="btn">À propos</a>
+    <a href="/categories/" class="btn">Catégories</a>
+    <a href="/tags/" class="btn">Tags</a>
   </div>
 </div>
 
 <div class="tech-priest-gif">
-  <img src="https://media1.tenor.com/m/zw3HWomJs3YAAAAd/darktide-adeptus-mechanicus.gif" alt="Tech-Priest">
+  <img
+    src="https://media1.tenor.com/m/zw3HWomJs3YAAAAd/darktide-adeptus-mechanicus.gif"
+    alt="Tech-Priest"
+  />
 </div>
 
 <div class="latest-posts">
   <div class="section-header">
     <h2>Derniers articles</h2>
   </div>
-  
+
   {% for post in site.posts limit:3 %}
-    <article class="post-card">
-      <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-      <p class="post-meta">📅 {{ post.date | date: "%d %B %Y" }} | {% if post.categories %}🏷️ {{ post.categories | join: ", " }}{% endif %}</p>
-      {% if post.description %}
-        <p>{{ post.description }}</p>
-      {% endif %}
-    </article>
+  <article class="post-card">
+    <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+    <p class="post-meta">
+      📅 {{ post.date | date: "%d %B %Y" }} | {% if post.categories %}🏷️ {{
+      post.categories | join: ", " }}{% endif %}
+    </p>
+    {% if post.description %}
+    <p>{{ post.description }}</p>
+    {% endif %}
+  </article>
   {% endfor %}
-  
+
   <div class="quick-links">
     <a href="/archives/" class="btn">
       Voir tous les articles
@@ -264,8 +275,15 @@ title: Accueil
   </div>
 </div>
 
-<div style="text-align: center; margin-top: 3rem; padding: 2rem; border-top: 1px solid var(--border-color);">
-  <p style="color: var(--text-muted-color); font-style: italic;">
+<div
+  style="
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2rem;
+    border-top: 1px solid var(--border-color);
+  "
+>
+  <p style="color: var(--text-muted-color); font-style: italic">
     "La connaissance est pouvoir, gardez-la bien." ⚙️
   </p>
 </div>
