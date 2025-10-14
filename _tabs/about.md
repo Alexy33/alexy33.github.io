@@ -31,6 +31,8 @@ Je suis actuellement en train d'apprendre la cybersécurité, principalement à 
 - **Lecture** : articles, docs, CVE, tout ce qui m'aide à progresser
 - **Projets perso** : scripts et outils que je développe pour apprendre
 
+[![TryHackMe Badge](https://tryhackme-badges.s3.amazonaws.com/Xufox.png)](https://tryhackme.com/p/Xufox)
+
 ## 💻 Mes compétences (en développement !)
 
 ### Pentesting & Exploitation
