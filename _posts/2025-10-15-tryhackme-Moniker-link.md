@@ -1,6 +1,6 @@
 ---
 title: "TryHackMe - Moniker Link (CVE-2024-21413)"
-date: 2025-10-15 00:10:00 +0100
+date: 2025-10-15 00:03:00 +0200
 categories: [TryHackMe, Learning]
 tags: [moniker-link, cve-2024-21413, microsoft, outlook, exploitation]
 description: "Write-up de la room Moniker Link - analyse et exploitation de la CVE-2024-21413 affectant Microsoft Outlook"
@@ -158,7 +158,7 @@ Lorsque la victime clique sur le lien, son système tente de s'authentifier aupr
 
 Le chercheur en sécurité Florian Roth a créé une [règle YARA](https://github.com/Neo23x0/signature-base/blob/master/yara/expl_outlook_cve_2024_21413.yar) pour détecter les emails exploitant cette vulnérabilité :
 
-```yara
+```py
 rule EXPL_CVE_2024_21413_Microsoft_Outlook_RCE_Feb24 {
    meta:
       description = "Detects emails that contain signs of a method to exploit CVE-2024-21413 in Microsoft Outlook"
