@@ -55,14 +55,6 @@ Je suis actuellement en train d'apprendre la cybersécurité, principalement à 
 
 ![Techpriest](https://media1.tenor.com/m/xp8XacjuoHkAAAAC/techpriest-warhammer40k.gif)
 
-## 📊 Mes plateformes
-
-| Plateforme | Profil |
-|------------|--------|
-| 🟩 **TryHackMe** | [Xufox](https://tryhackme.com/p/Xufox) |
-| 🟧 **HackTheBox** | [Bientôt disponible](https://hackthebox.com) |
-| 🐱 **GitHub** | [Alexy33](https://github.com/Alexy33) |
-
 ## 🎓 Mon parcours
 
 - **Actuellement** : Étudiant à Epitech, je me spécialise en cybersécurité et passionné de CTF
@@ -76,7 +68,13 @@ Quand je ne suis pas en train de cracker des hash ou d'exploiter des vulnérabil
 - Je bidouille avec Linux et je customise mon setup
 - Je lis des articles techniques et de la doc
 - Je suis fan de Warhammer 40k (d'où les quelques références Mechanicus ⚙️)
-- Je sers la Super Terre !
+- Je sers la Super Terre pour la démocratie !
+
+## 📊 Mes statistiques GitHub
+
+![GitHub Streak](https://streak-stats.demolab.com/?user=Alexy33&theme=dark&background=0a0a0a&ring=ff5500&fire=ff8500&currStreakLabel=ff6b00&sideLabels=ffa500&currStreakNum=ffffff&dates=666666&hide_border=true)
+
+[![GitHub Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=Alexy33&theme=github-compact&hide_border=true&bg_color=000000&color=ff6b00&line=ff8500&point=ffaa33)](https://github.com/Alexy33)
 
 ## 📫 On reste en contact ?
 
