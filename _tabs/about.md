@@ -72,7 +72,7 @@ Quand je ne suis pas en train de cracker des hash ou d'exploiter des vulnérabil
 
 ## 📊 Mes statistiques GitHub
 
-![GitHub Streak](https://streak-stats.demolab.com/?user=Alexy33&theme=dark&background=0a0a0a&ring=ff5500&fire=ff8500&currStreakLabel=ff6b00&sideLabels=ffa500&currStreakNum=ffffff&dates=666666&hide_border=true)
+[![GitHub Streak](https://streak-stats.demolab.com?user=Alexy33&theme=dark&hide_border=true&date_format=j%20M%5B%20Y%5D&background=45%2C2B2B2B%2C000000&sideLabels=D77235&fire=DE4D0B&sideNums=FFFFFF)](https://git.io/streak-stats)
 
 [![GitHub Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=Alexy33&theme=github-compact&hide_border=true&bg_color=000000&color=ff6b00&line=ff8500&point=ffaa33)](https://github.com/Alexy33)
 
