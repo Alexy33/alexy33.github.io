@@ -4,6 +4,8 @@ icon: fas fa-info-circle
 order: 4
 ---
 
+![Visitors](https://visitor-badge.laobi.icu/badge?page_id=Alexy33.Alexy33&left_color=black&right_color=ff6b00)
+
 ![Techpriest](/assets/img/about/mechanicus-techpriest.gif)
 
 ## Bienvenue sur mon blog !
@@ -102,3 +104,5 @@ La communauté cyber est géniale, et c'est grâce aux partages et à l'entraide
 *Dernière mise à jour : Octobre 2025*
 
 P.S. : Si tu as des suggestions de rooms TryHackMe ou de challenges intéressants à faire, je suis preneur ! 😄
+
+![Omnissiah](https://img.shields.io/badge/Praise_the-Omnissiah-ff6b00?style=for-the-badge&logo=warhammer&logoColor=white)
