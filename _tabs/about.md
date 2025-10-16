@@ -4,8 +4,6 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-![Visitors](https://visitor-badge.laobi.icu/badge?page_id=Alexy33.Alexy33&left_color=black&right_color=ff6b00)
-
 ![Techpriest](/assets/img/about/mechanicus-techpriest.gif)
 
 ## Bienvenue sur mon blog !
