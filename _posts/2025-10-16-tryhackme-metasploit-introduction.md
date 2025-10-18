@@ -5,7 +5,7 @@ categories: [TryHackMe, Learning, Metasploit]
 tags: [reverse-shell, exploitation, msfconsole, meterpreter, enumeration]
 description: "Write-up de la room Metasploit Introduction - apprendre à utiliser et maîtriser le Framework Metasploit (Partie 1 sur 3)"
 image:
-  path: /assets/img/posts/tryhackme-metasploit-introduction.png
+  path: /assets/img/posts/tryhackme-metasploit-exploitation.png
   alt: "Metasploit Introduction"
 ---
 
