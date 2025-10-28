@@ -1,6 +1,6 @@
 ---
 title: "TryHackMe - Digital Foresics Fundamentals"
-date: 2025-10-26 0:57:00 +0200
+date: 2025-10-28 15:12:00 +0200
 categories: [TryHackMe, Learning]
 tags: [forensics, security]
 description: "Write-up de la room Digital Foresics Fundamentals qui nous apprendra ce qu'est cette team"
@@ -574,3 +574,7 @@ Look Parameters Camera Profile  : Adobe Standard
 ```
 
 **Réponse :** `Canon EOS R6`
+
+**Room Complétée**
+
+{% include comments.html %}
