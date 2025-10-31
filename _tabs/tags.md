@@ -5,7 +5,6 @@ order: 2
 ---
 
 <style>
-  /* Variables Mechanicus - Orange subtil */
   :root {
     --mechanicus-orange: #ff6b00;
     --mechanicus-orange-subtle: rgba(255, 107, 0, 0.15);
@@ -518,7 +517,6 @@ order: 2
 </div>
 
 <script>
-  // Initialisation
   document.addEventListener('DOMContentLoaded', function() {
     const totalTags = document.querySelectorAll('.tag-card').length;
     let totalPosts = 0;
@@ -553,7 +551,6 @@ order: 2
     const container = document.getElementById('tags-container');
     const cards = Array.from(container.getElementsByClassName('tag-card'));
     
-    // Gestion des boutons actifs
     document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
     document.getElementById(`btn-${method}`).classList.add('active');
     
@@ -567,7 +564,6 @@ order: 2
         }
       });
       
-      // Tri alphabétique après filtrage
       const visibleCards = cards.filter(card => card.style.display !== 'none');
       visibleCards.sort((a, b) => a.dataset.tag.localeCompare(b.dataset.tag));
       visibleCards.forEach(card => container.appendChild(card));
@@ -576,14 +572,12 @@ order: 2
       return;
     }
     
-    // Afficher tous les tags si "all"
     if (method === 'all') {
       cards.forEach(card => {
         card.style.display = 'flex';
       });
     }
     
-    // Tri des cartes
     cards.sort((a, b) => {
       switch(method) {
         case 'alpha':
@@ -598,7 +592,6 @@ order: 2
       }
     });
     
-    // Réorganisation avec animation
     cards.forEach((card, index) => {
       card.style.opacity = '0';
       card.style.transform = 'translateY(10px)';
@@ -649,7 +642,6 @@ order: 2
     }
   }
 
-  // Ajout de transitions CSS
   document.querySelectorAll('.tag-card').forEach(card => {
     card.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
   });
