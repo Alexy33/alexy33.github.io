@@ -499,7 +499,7 @@ order: 7
     <!-- Certificat Introduction to Cyber Security -->
     <div class="cert-card completed">
       <div class="cert-image-container">
-        <img src="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-5BFCGGQCAQ.pdf" 
+        <img src="https://assets.tryhackme.com/img/paths/introtocybersecurity.svg" 
              alt="Introduction to Cyber Security Certificate" 
              class="cert-image"
              onerror="this.style.display='none'; this.parentElement.innerHTML='<p style=\'color: var(--mechanicus-text-muted); text-align: center; padding: 2rem;\'>Certificat non disponible</p>'">
@@ -542,7 +542,7 @@ order: 7
     <!-- Certificat Cyber Security 101 - METTEZ VOTRE LIEN ICI -->
     <div class="cert-card completed">
       <div class="cert-image-container">
-        <img src="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-QAFCZ8TPCH.pdf" 
+        <img src="https://assets.tryhackme.com/img/paths/introtocybersecurity.svg" 
              alt="Cyber Security 101 Certificate" 
              class="cert-image"
              onerror="this.style.display='none'; this.parentElement.innerHTML='<p style=\'color: var(--mechanicus-text-muted); text-align: center; padding: 2rem;\'>Certificat non disponible</p>'">
