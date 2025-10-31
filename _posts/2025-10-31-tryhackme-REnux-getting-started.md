@@ -2,7 +2,7 @@
 title: "TryHackMe - REnux Getting Started"
 date: 2025-10-31 09:20:00 +0200
 categories: [TryHackMe, Learning]
-tags: [REnux]
+tags: [REMnux]
 description: "Write-up de la room RENUX qui nous apprendre ce qu'est REnux ainsi qui les outils qui le composent"
 image:
   path: /assets/img/posts/tryhackme-introduction-SIEM.png
