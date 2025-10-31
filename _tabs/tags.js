@@ -5,6 +5,7 @@ order: 2
 ---
 
 <style>
+  /* Variables Mechanicus */
   :root {
     --mechanicus-orange: #ff6b00;
     --mechanicus-orange-subtle: rgba(255, 107, 0, 0.15);
@@ -22,7 +23,7 @@ order: 2
   .tags-header {
     text-align: center;
     margin-bottom: 3rem;
-    padding: 2rem 0;
+    padding: 2rem 1rem;
     border-bottom: 1px solid var(--mechanicus-border);
   }
 
@@ -50,6 +51,7 @@ order: 2
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 1rem;
   }
 
   .stat-card {
@@ -87,7 +89,7 @@ order: 2
     border: 1px solid var(--mechanicus-border);
     border-radius: 2px;
     padding: 1.5rem;
-    margin-bottom: 2.5rem;
+    margin: 0 1rem 2rem 1rem;
   }
 
   .controls-label {
@@ -156,6 +158,7 @@ order: 2
     transform: translateY(-50%);
     color: var(--mechanicus-text-muted);
     font-size: 1rem;
+    pointer-events: none;
   }
 
   .tag-search {
@@ -187,6 +190,7 @@ order: 2
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1rem;
     margin-top: 2rem;
+    padding: 0 1rem;
   }
 
   .tag-card {
@@ -235,6 +239,7 @@ order: 2
     font-family: 'Courier New', monospace;
     transition: color 0.25s ease;
     line-height: 1.3;
+    word-break: break-word;
   }
 
   .tag-name:hover {
@@ -254,6 +259,7 @@ order: 2
     justify-content: space-between;
     gap: 0.5rem;
     margin-top: auto;
+    flex-wrap: wrap;
   }
 
   .tag-count {
@@ -333,7 +339,7 @@ order: 2
       var(--mechanicus-border) 80%, 
       transparent
     );
-    margin: 2.5rem 0;
+    margin: 2.5rem 1rem;
   }
 
   /* Responsive */
@@ -370,11 +376,27 @@ order: 2
     .stat-number {
       font-size: 2rem;
     }
+
+    .controls-section,
+    .mechanicus-divider {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
   }
 
   @media (max-width: 580px) {
+    .tags-header {
+      padding: 1.5rem 0.5rem;
+    }
+
+    .tags-header h1 {
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+    }
+
     .tags-grid {
       grid-template-columns: 1fr;
+      padding: 0 0.5rem;
     }
 
     .tags-controls {
@@ -384,15 +406,19 @@ order: 2
     .stats-container {
       grid-template-columns: 1fr;
       max-width: 300px;
-    }
-
-    .tags-header h1 {
-      font-size: 1.6rem;
-      letter-spacing: 1px;
+      padding: 0 0.5rem;
     }
 
     .tag-card {
       min-height: 80px;
+    }
+
+    .controls-section {
+      padding: 1rem;
+    }
+
+    .sort-btn {
+      padding: 0.8rem 1rem;
     }
   }
 
@@ -407,6 +433,10 @@ order: 2
 
     .tag-card {
       padding: 0.8rem;
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
     }
   }
 </style>
@@ -516,133 +546,4 @@ order: 2
   <p>Aucune donnée trouvée</p>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const totalTags = document.querySelectorAll('.tag-card').length;
-    let totalPosts = 0;
-    
-    document.querySelectorAll('.tag-card').forEach(card => {
-      totalPosts += parseInt(card.dataset.count);
-    });
-    
-    animateCounter('total-tags', totalTags);
-    animateCounter('total-posts', totalPosts);
-  });
-
-  function animateCounter(elementId, targetValue) {
-    const element = document.getElementById(elementId);
-    const duration = 800;
-    const steps = 25;
-    const increment = targetValue / steps;
-    let current = 0;
-    
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= targetValue) {
-        element.textContent = targetValue;
-        clearInterval(timer);
-      } else {
-        element.textContent = Math.floor(current);
-      }
-    }, duration / steps);
-  }
-
-  function sortTags(method) {
-    const container = document.getElementById('tags-container');
-    const cards = Array.from(container.getElementsByClassName('tag-card'));
-    
-    document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
-    document.getElementById(`btn-${method}`).classList.add('active');
-    
-    // Filtrage par plateforme
-    if (method === 'thm' || method === 'htb') {
-      cards.forEach(card => {
-        if (card.dataset.platform === method) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-      
-      const visibleCards = cards.filter(card => card.style.display !== 'none');
-      visibleCards.sort((a, b) => a.dataset.tag.localeCompare(b.dataset.tag));
-      visibleCards.forEach(card => container.appendChild(card));
-      
-      updateNoResults();
-      return;
-    }
-    
-    if (method === 'all') {
-      cards.forEach(card => {
-        card.style.display = 'flex';
-      });
-    }
-    
-    cards.sort((a, b) => {
-      switch(method) {
-        case 'alpha':
-        case 'all':
-          return a.dataset.tag.localeCompare(b.dataset.tag);
-        case 'count':
-          return parseInt(b.dataset.count) - parseInt(a.dataset.count);
-        case 'recent':
-          return parseInt(b.dataset.date) - parseInt(a.dataset.date);
-        default:
-          return 0;
-      }
-    });
-    
-    cards.forEach((card, index) => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(10px)';
-      
-      setTimeout(() => {
-        container.appendChild(card);
-        setTimeout(() => {
-          card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
-        }, 10);
-      }, index * 20);
-    });
-    
-    updateNoResults();
-  }
-
-  function filterTags() {
-    const searchTerm = document.getElementById('tag-search').value.toLowerCase();
-    const cards = document.querySelectorAll('.tag-card');
-    
-    cards.forEach(card => {
-      const tagName = card.dataset.tag;
-      if (tagName.includes(searchTerm)) {
-        card.style.display = 'flex';
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
-      } else {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(-5px)';
-        setTimeout(() => {
-          card.style.display = 'none';
-        }, 200);
-      }
-    });
-    
-    updateNoResults();
-  }
-
-  function updateNoResults() {
-    const cards = document.querySelectorAll('.tag-card');
-    const visibleCount = Array.from(cards).filter(card => card.style.display !== 'none').length;
-    const noResults = document.getElementById('no-results');
-    
-    if (visibleCount === 0) {
-      noResults.style.display = 'block';
-    } else {
-      noResults.style.display = 'none';
-    }
-  }
-
-  document.querySelectorAll('.tag-card').forEach(card => {
-    card.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-  });
-</script>
+<script src="{{ '/assets/js/tags.js' | relative_url }}"></script>
