@@ -25,7 +25,7 @@ order: 7
   .certifications-header {
     text-align: center;
     margin-bottom: 3rem;
-    padding: 2rem 0;
+    padding: 2rem 1rem;
     border-bottom: 1px solid var(--mechanicus-border);
   }
 
@@ -56,6 +56,7 @@ order: 7
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 1rem;
   }
 
   .stat-card {
@@ -96,11 +97,12 @@ order: 7
       var(--mechanicus-border) 80%, 
       transparent
     );
-    margin: 2.5rem 0;
+    margin: 2.5rem 1rem;
   }
 
   .platform-section {
     margin-bottom: 4rem;
+    padding: 0 1rem;
   }
 
   .platform-header {
@@ -385,6 +387,10 @@ order: 7
 
   /* Responsive */
   @media (max-width: 768px) {
+    .certifications-header {
+      padding: 1.5rem 0.5rem;
+    }
+
     .certifications-header h1 {
       font-size: 2rem;
       letter-spacing: 2px;
@@ -398,12 +404,20 @@ order: 7
       font-size: 1.4rem;
     }
 
+    .platform-section {
+      padding: 0 0.5rem;
+    }
+
     .stat-number {
       font-size: 2rem;
     }
 
     .cert-image-container {
       height: 220px;
+    }
+
+    .mechanicus-divider {
+      margin: 2.5rem 0.5rem;
     }
   }
 
@@ -416,6 +430,7 @@ order: 7
     .stats-overview {
       grid-template-columns: 1fr;
       max-width: 300px;
+      padding: 0 0.5rem;
     }
 
     .cert-content {
@@ -425,6 +440,24 @@ order: 7
     .cert-header {
       flex-direction: column;
       gap: 0.5rem;
+    }
+
+    .cert-image-container {
+      height: 200px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .certifications-header h1 {
+      font-size: 1.4rem;
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+    }
+
+    .cert-title {
+      font-size: 1.1rem;
     }
   }
 </style>
@@ -643,30 +676,4 @@ order: 7
   </div>
 </div>
 
-<script>
-  // Animation des compteurs
-  document.addEventListener('DOMContentLoaded', function() {
-    animateCounter('completed-count', 2);
-    animateCounter('progress-count', 1);
-    animateCounter('planned-count', 1);
-    animateCounter('total-count', 4);
-  });
-
-  function animateCounter(elementId, targetValue) {
-    const element = document.getElementById(elementId);
-    const duration = 1000;
-    const steps = 30;
-    const increment = targetValue / steps;
-    let current = 0;
-    
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= targetValue) {
-        element.textContent = targetValue;
-        clearInterval(timer);
-      } else {
-        element.textContent = Math.floor(current);
-      }
-    }, duration / steps);
-  }
-</script>
+<script src="{{ '/assets/js/certifications.js' | relative_url }}"></script>
