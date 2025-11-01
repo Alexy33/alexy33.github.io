@@ -1,0 +1,42 @@
+{
+  "username": "Arcony",
+  "path_id": 16,
+  "path_name": "Penetration Tester",
+  "last_updated": "2024-11-01T22:00:00",
+  "overall_progress": 15,
+  "completed_modules": 4,
+  "total_modules": 28,
+  "current_module": "Web Requests",
+  "modules": [
+    {
+      "name": "Introduction to Networking",
+      "completed": true,
+      "progress": 100,
+      "tier": 0
+    },
+    {
+      "name": "Linux Fundamentals",
+      "completed": true,
+      "progress": 100,
+      "tier": 0
+    },
+    {
+      "name": "Windows Fundamentals",
+      "completed": true,
+      "progress": 100,
+      "tier": 0
+    },
+    {
+      "name": "Introduction to Web Applications",
+      "completed": true,
+      "progress": 100,
+      "tier": 0
+    },
+    {
+      "name": "Web Requests",
+      "completed": false,
+      "progress": 45,
+      "tier": 0
+    }
+  ]
+}

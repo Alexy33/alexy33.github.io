@@ -1,0 +1,54 @@
+name: Update HTB Academy Progress
+
+on:
+  schedule:
+    # Exécute tous les jours à 6h00 UTC (8h00 en France)
+    - cron: '0 6 * * *'
+  
+  # Permet l'exécution manuelle
+  workflow_dispatch:
+
+jobs:
+  update-progress:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install requests
+      
+      - name: Run update script
+        env:
+          HTB_XSRF_TOKEN: ${{ secrets.HTB_XSRF_TOKEN }}
+          HTB_SESSION: ${{ secrets.HTB_SESSION }}
+        run: |
+          python scripts/update_htb_progress.py
+      
+      - name: Check if there are changes
+        id: verify_diff
+        run: |
+          git diff --quiet _data/htb-progress.json || echo "changed=true" >> $GITHUB_OUTPUT
+      
+      - name: Commit and push if changed
+        if: steps.verify_diff.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add _data/htb-progress.json
+          git commit -m "🔄 Update HTB Academy progress [automated]"
+          git push
+      
+      - name: No changes
+        if: steps.verify_diff.outputs.changed != 'true'
+        run: |
+          echo "No changes in HTB progress"
