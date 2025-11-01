@@ -2,10 +2,23 @@
   "username": "Arcony",
   "path_id": 16,
   "path_name": "Penetration Tester",
-  "last_updated": "2024-11-01T00:00:00",
+  "last_updated": "2025-11-01T22:57:05.570932",
   "overall_progress": 0,
   "completed_modules": 0,
   "total_modules": 28,
-  "current_module": "En attente de mise à jour",
-  "modules": []
+  "current_module": "Penetration Testing Process",
+  "modules": [
+    {
+      "id": 90,
+      "name": "Penetration Testing Process",
+      "slug": "penetration-testing-process",
+      "progress": 20,
+      "state": "in_progress",
+      "sections_count": 15,
+      "current_section_id": 935,
+      "difficulty": "Fundamental",
+      "tier": "Tier I",
+      "estimated_time": "6 hours"
+    }
+  ]
 }
