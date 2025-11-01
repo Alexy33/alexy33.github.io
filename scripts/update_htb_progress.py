@@ -16,21 +16,37 @@ BASE_URL = "https://academy.hackthebox.com"
 
 def get_htb_progress():
     """
-    Récupère la progression sur HTB Academy
+    Récupère la progression sur HTB Academy en utilisant la bonne API v2
     """
     
     # Headers pour l'authentification
     headers = {
         'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:144.0) Gecko/20100101 Firefox/144.0',
         'Accept': 'application/json',
+        'Accept-Language': 'fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3',
+        'Accept-Encoding': 'gzip, deflate, br, zstd',
         'Referer': f'{BASE_URL}/beta/dashboard',
         'Origin': BASE_URL,
+        'Connection': 'keep-alive',
+        'Sec-Fetch-Dest': 'empty',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-origin',
+        'Priority': 'u=4',
+        'TE': 'trailers'
     }
     
     # Cookies d'authentification (récupérés depuis les variables d'environnement)
+    xsrf_token = os.environ.get('HTB_XSRF_TOKEN', '')
+    session_token = os.environ.get('HTB_SESSION', '')
+    
+    if not xsrf_token or not session_token:
+        print("⚠️ Tokens d'authentification manquants!")
+        print("Assurez-vous que HTB_XSRF_TOKEN et HTB_SESSION sont définis.")
+        return None
+    
     cookies = {
-        'XSRF-TOKEN': os.environ.get('HTB_XSRF_TOKEN', ''),
-        'academy_session': os.environ.get('HTB_SESSION', ''),
+        'XSRF-TOKEN': xsrf_token,
+        'htb_academy_session': session_token,
     }
     
     session = requests.Session()
@@ -38,9 +54,20 @@ def get_htb_progress():
     session.cookies.update(cookies)
     
     try:
-        # Récupérer les informations du path
-        path_url = f"{BASE_URL}/api/v1/paths/{PATH_ID}/progress"
-        response = session.get(path_url, timeout=30)
+        # Récupérer les modules du path avec l'état "in_progress"
+        # Route API v2 correcte
+        modules_url = f"{BASE_URL}/api/v2/paths/{PATH_ID}/modules"
+        
+        print(f"📡 Requête: {modules_url}")
+        print(f"   État: in_progress")
+        
+        params = {
+            'state': 'in_progress'
+        }
+        
+        response = session.get(modules_url, params=params, timeout=30)
+        
+        print(f"📊 Statut de la réponse: {response.status_code}")
         
         if response.status_code == 200:
             data = response.json()
@@ -53,54 +80,68 @@ def get_htb_progress():
                 'last_updated': datetime.now().isoformat(),
                 'overall_progress': 0,
                 'completed_modules': 0,
-                'total_modules': 0,
-                'current_module': None,
+                'total_modules': 28,  # Total connu du path
+                'current_module': 'En attente de mise à jour',
                 'modules': []
             }
             
-            # Parser les données selon la structure de l'API HTB
+            # Parser les données selon la structure de l'API HTB v2
             if 'data' in data:
-                path_data = data['data']
+                modules = data['data']
+                print(f"📚 Modules récupérés: {len(modules)}")
                 
-                # Progression globale
-                if 'progress' in path_data:
-                    progress_data['overall_progress'] = path_data['progress']
-                
-                # Modules
-                if 'modules' in path_data:
-                    modules = path_data['modules']
-                    progress_data['total_modules'] = len(modules)
+                for module in modules:
+                    module_info = {
+                        'id': module.get('id', 0),
+                        'name': module.get('name', 'Unknown'),
+                        'slug': module.get('slug', ''),
+                        'progress': module.get('progress', 0),
+                        'state': module.get('state', 'not_started'),
+                        'sections_count': module.get('sections_count', 0),
+                        'current_section_id': module.get('current_section_id', None),
+                        'difficulty': module.get('difficulty', {}).get('text', 'Unknown'),
+                        'tier': module.get('tier', {}).get('name', 'Unknown'),
+                        'estimated_time': module.get('estimated_time_of_completion', 'Unknown')
+                    }
                     
-                    for module in modules:
-                        module_info = {
-                            'name': module.get('name', 'Unknown'),
-                            'completed': module.get('completed', False),
-                            'progress': module.get('progress', 0),
-                            'tier': module.get('tier', 0)
-                        }
-                        
-                        progress_data['modules'].append(module_info)
-                        
-                        if module_info['completed']:
-                            progress_data['completed_modules'] += 1
-                        elif module_info['progress'] > 0 and not progress_data['current_module']:
-                            progress_data['current_module'] = module_info['name']
+                    progress_data['modules'].append(module_info)
+                    
+                    # Si le module est en cours, c'est celui-ci qu'on affiche
+                    if module_info['state'] == 'in_progress' and module_info['progress'] > 0:
+                        progress_data['current_module'] = module_info['name']
+                        print(f"📖 Module en cours: {module_info['name']} ({module_info['progress']}%)")
             
-            # Calculer le pourcentage si pas fourni par l'API
-            if progress_data['overall_progress'] == 0 and progress_data['total_modules'] > 0:
+            # Récupérer le nombre total de modules complétés via une autre requête
+            completed_url = f"{BASE_URL}/api/v2/paths/{PATH_ID}/modules"
+            completed_params = {'state': 'completed'}
+            
+            completed_response = session.get(completed_url, params=completed_params, timeout=30)
+            
+            if completed_response.status_code == 200:
+                completed_data = completed_response.json()
+                if 'data' in completed_data:
+                    progress_data['completed_modules'] = len(completed_data['data'])
+                    print(f"✅ Modules complétés: {progress_data['completed_modules']}")
+            
+            # Calculer le pourcentage de progression
+            if progress_data['total_modules'] > 0:
                 progress_data['overall_progress'] = int(
                     (progress_data['completed_modules'] / progress_data['total_modules']) * 100
                 )
             
+            print(f"📈 Progression globale: {progress_data['overall_progress']}%")
+            
             return progress_data
             
         else:
-            print(f"Erreur API: Status {response.status_code}")
+            print(f"❌ Erreur API: Status {response.status_code}")
             print(f"Response: {response.text}")
             return None
             
     except Exception as e:
-        print(f"Erreur lors de la récupération des données: {e}")
+        print(f"❌ Erreur lors de la récupération des données: {e}")
+        import traceback
+        traceback.print_exc()
         return None
 
 def save_progress(progress_data):
@@ -112,32 +153,43 @@ def save_progress(progress_data):
         os.makedirs('_data', exist_ok=True)
         
         # Sauvegarder dans _data/htb-progress.json
-        with open('_data/htb-progress.json', 'w') as f:
-            json.dump(progress_data, f, indent=2)
+        with open('_data/htb-progress.json', 'w', encoding='utf-8') as f:
+            json.dump(progress_data, f, indent=2, ensure_ascii=False)
         
-        print("✓ Données sauvegardées dans _data/htb-progress.json")
-        print(f"  Progression: {progress_data['overall_progress']}%")
-        print(f"  Modules complétés: {progress_data['completed_modules']}/{progress_data['total_modules']}")
+        print("\n" + "="*50)
+        print("✅ Données sauvegardées dans _data/htb-progress.json")
+        print("="*50)
+        print(f"📊 Progression: {progress_data['overall_progress']}%")
+        print(f"📚 Modules complétés: {progress_data['completed_modules']}/{progress_data['total_modules']}")
         if progress_data['current_module']:
-            print(f"  Module en cours: {progress_data['current_module']}")
+            print(f"📖 Module en cours: {progress_data['current_module']}")
+        print(f"🕐 Dernière mise à jour: {progress_data['last_updated']}")
+        print("="*50)
         
         return True
     else:
-        print("✗ Aucune donnée à sauvegarder")
+        print("❌ Aucune donnée à sauvegarder")
         return False
 
 def main():
-    print("Récupération de la progression HTB Academy...")
-    print(f"Utilisateur: {HTB_USERNAME}")
-    print(f"Path: Penetration Tester (ID: {PATH_ID})")
-    print("-" * 50)
+    print("="*50)
+    print("🎯 HTB ACADEMY PROGRESS UPDATER")
+    print("="*50)
+    print(f"👤 Utilisateur: {HTB_USERNAME}")
+    print(f"🎓 Path: Penetration Tester (ID: {PATH_ID})")
+    print("="*50)
+    print()
     
     progress = get_htb_progress()
     
     if progress:
         save_progress(progress)
+        print("\n✅ Script terminé avec succès!")
     else:
-        print("Échec de la récupération des données")
+        print("\n❌ Échec de la récupération des données")
+        print("Vérifiez vos tokens d'authentification dans les secrets GitHub:")
+        print("  - HTB_XSRF_TOKEN")
+        print("  - HTB_SESSION")
         exit(1)
 
 if __name__ == "__main__":
