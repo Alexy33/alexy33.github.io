@@ -475,35 +475,42 @@ order: 6
 
 <script>
   // Charger et afficher les données de progression HTB
-  fetch('{{ "/assets/data/htb-progress.json" | relative_url }}')
-    .then(response => response.json())
-    .then(data => {
-      // Progression globale
-      document.getElementById('htb-progress-percent').textContent = data.overall_progress + '%';
-      document.getElementById('htb-progress-bar').style.width = data.overall_progress + '%';
-      
-      // Stats modules
-      document.getElementById('htb-completed-modules').textContent = data.completed_modules;
-      document.getElementById('htb-total-modules').textContent = data.total_modules;
-      document.getElementById('htb-remaining').textContent = data.total_modules - data.completed_modules;
-      
-      // Module en cours
-      if (data.current_module) {
-        document.getElementById('current-module-container').style.display = 'block';
-        document.getElementById('current-module-name').textContent = data.current_module;
-      }
-      
-      // Dernière mise à jour
-      const lastUpdated = new Date(data.last_updated);
-      const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-      document.getElementById('htb-last-updated').textContent = lastUpdated.toLocaleDateString('fr-FR', options);
-    })
-    .catch(error => {
-      console.error('Erreur lors du chargement des données HTB:', error);
-      document.getElementById('htb-progress-percent').textContent = 'N/A';
-      document.getElementById('htb-completed-modules').textContent = 'N/A';
-      document.getElementById('htb-total-modules').textContent = 'N/A';
-      document.getElementById('htb-remaining').textContent = 'N/A';
-      document.getElementById('htb-last-updated').textContent = 'Données non disponibles';
-    });
+  // Utiliser les données Jekyll directement depuis _data
+  {% if site.data.htb-progress %}
+  const htbData = {{ site.data.htb-progress | jsonify }};
+  displayHTBProgress(htbData);
+  {% else %}
+  // Fallback: données non disponibles
+  displayHTBProgressError();
+  {% endif %}
+
+  function displayHTBProgress(data) {
+    // Progression globale
+    document.getElementById('htb-progress-percent').textContent = data.overall_progress + '%';
+    document.getElementById('htb-progress-bar').style.width = data.overall_progress + '%';
+    
+    // Stats modules
+    document.getElementById('htb-completed-modules').textContent = data.completed_modules;
+    document.getElementById('htb-total-modules').textContent = data.total_modules;
+    document.getElementById('htb-remaining').textContent = data.total_modules - data.completed_modules;
+    
+    // Module en cours
+    if (data.current_module) {
+      document.getElementById('current-module-container').style.display = 'block';
+      document.getElementById('current-module-name').textContent = data.current_module;
+    }
+    
+    // Dernière mise à jour
+    const lastUpdated = new Date(data.last_updated);
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    document.getElementById('htb-last-updated').textContent = lastUpdated.toLocaleDateString('fr-FR', options);
+  }
+
+  function displayHTBProgressError() {
+    document.getElementById('htb-progress-percent').textContent = 'N/A';
+    document.getElementById('htb-completed-modules').textContent = 'N/A';
+    document.getElementById('htb-total-modules').textContent = 'N/A';
+    document.getElementById('htb-remaining').textContent = 'N/A';
+    document.getElementById('htb-last-updated').textContent = 'Données non disponibles';
+  }
 </script>
