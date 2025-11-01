@@ -474,43 +474,122 @@ order: 6
 </div>
 
 <script>
-  // Charger et afficher les données de progression HTB
-  // Utiliser les données Jekyll directement depuis _data
-  {% if site.data.htb-progress %}
-  const htbData = {{ site.data.htb-progress | jsonify }};
-  displayHTBProgress(htbData);
-  {% else %}
-  // Fallback: données non disponibles
-  displayHTBProgressError();
-  {% endif %}
+  // Charger les données HTB directement depuis Jekyll
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('🎯 Initialisation de la Roadmap HTB...');
+    
+    {% if site.data.htb-progress %}
+      const htbData = {{ site.data.htb-progress | jsonify }};
+      console.log('✅ Données HTB chargées:', htbData);
+      
+      if (htbData && htbData.overall_progress !== undefined) {
+        displayHTBProgress(htbData);
+      } else {
+        console.error('❌ Données HTB invalides');
+        displayHTBProgressError();
+      }
+    {% else %}
+      console.error('❌ Aucune donnée HTB trouvée');
+      displayHTBProgressError();
+    {% endif %}
+  });
 
   function displayHTBProgress(data) {
+    console.log('📊 Affichage des données HTB...');
+    
     // Progression globale
-    document.getElementById('htb-progress-percent').textContent = data.overall_progress + '%';
-    document.getElementById('htb-progress-bar').style.width = data.overall_progress + '%';
+    const progressPercent = document.getElementById('htb-progress-percent');
+    const progressBar = document.getElementById('htb-progress-bar');
+    
+    if (progressPercent) {
+      progressPercent.textContent = data.overall_progress + '%';
+      console.log('  - Progression:', data.overall_progress + '%');
+    }
+    
+    if (progressBar) {
+      progressBar.style.width = data.overall_progress + '%';
+    }
     
     // Stats modules
-    document.getElementById('htb-completed-modules').textContent = data.completed_modules;
-    document.getElementById('htb-total-modules').textContent = data.total_modules;
-    document.getElementById('htb-remaining').textContent = data.total_modules - data.completed_modules;
+    const completedModules = document.getElementById('htb-completed-modules');
+    const totalModules = document.getElementById('htb-total-modules');
+    const remaining = document.getElementById('htb-remaining');
+    
+    if (completedModules) {
+      completedModules.textContent = data.completed_modules || 0;
+      console.log('  - Modules complétés:', data.completed_modules);
+    }
+    
+    if (totalModules) {
+      totalModules.textContent = data.total_modules || 28;
+      console.log('  - Total modules:', data.total_modules);
+    }
+    
+    if (remaining) {
+      const remainingCount = (data.total_modules || 28) - (data.completed_modules || 0);
+      remaining.textContent = remainingCount;
+      console.log('  - Modules restants:', remainingCount);
+    }
     
     // Module en cours
-    if (data.current_module) {
-      document.getElementById('current-module-container').style.display = 'block';
-      document.getElementById('current-module-name').textContent = data.current_module;
+    const currentModuleContainer = document.getElementById('current-module-container');
+    const currentModuleName = document.getElementById('current-module-name');
+    
+    if (data.current_module && data.current_module !== 'En attente de mise à jour') {
+      if (currentModuleContainer) {
+        currentModuleContainer.style.display = 'block';
+      }
+      if (currentModuleName) {
+        currentModuleName.textContent = data.current_module;
+        console.log('  - Module en cours:', data.current_module);
+      }
+    } else {
+      console.log('  - Aucun module en cours');
     }
     
     // Dernière mise à jour
-    const lastUpdated = new Date(data.last_updated);
-    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-    document.getElementById('htb-last-updated').textContent = lastUpdated.toLocaleDateString('fr-FR', options);
+    const lastUpdated = document.getElementById('htb-last-updated');
+    if (lastUpdated && data.last_updated) {
+      const date = new Date(data.last_updated);
+      const options = { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric', 
+        hour: '2-digit', 
+        minute: '2-digit' 
+      };
+      lastUpdated.textContent = date.toLocaleDateString('fr-FR', options);
+      console.log('  - Dernière mise à jour:', date.toLocaleDateString('fr-FR', options));
+    }
+    
+    console.log('✅ Affichage terminé avec succès');
   }
 
   function displayHTBProgressError() {
-    document.getElementById('htb-progress-percent').textContent = 'N/A';
-    document.getElementById('htb-completed-modules').textContent = 'N/A';
-    document.getElementById('htb-total-modules').textContent = 'N/A';
-    document.getElementById('htb-remaining').textContent = 'N/A';
-    document.getElementById('htb-last-updated').textContent = 'Données non disponibles';
+    console.error('⚠️ Affichage en mode erreur');
+    
+    // Afficher des valeurs par défaut
+    const elements = {
+      'htb-progress-percent': '0',
+      'htb-completed-modules': '0',
+      'htb-total-modules': '28',
+      'htb-remaining': '28',
+      'htb-last-updated': 'Données non disponibles'
+    };
+    
+    for (const [id, value] of Object.entries(elements)) {
+      const elem = document.getElementById(id);
+      if (elem) {
+        elem.textContent = value;
+      }
+    }
+    
+    // Masquer le module en cours
+    const currentModuleContainer = document.getElementById('current-module-container');
+    if (currentModuleContainer) {
+      currentModuleContainer.style.display = 'none';
+    }
+    
+    console.log('⚠️ Valeurs par défaut affichées');
   }
 </script>
