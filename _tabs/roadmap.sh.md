@@ -197,17 +197,52 @@ order: 6
     margin-top: 2rem;
     padding: 1.5rem;
     background: var(--mechanicus-black);
-    border: 1px solid var(--htb-green);
+    border: 1px solid var(--mechanicus-orange);
     border-radius: 3px;
   }
 
+  .current-module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
   .current-module-label {
-    color: var(--htb-green);
+    color: var(--mechanicus-orange);
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 0.5rem;
     font-weight: 600;
+  }
+
+  .current-module-badge {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .module-badge {
+    padding: 0.3rem 0.6rem;
+    background: var(--mechanicus-dark-grey);
+    border: 1px solid var(--mechanicus-border);
+    border-radius: 2px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--mechanicus-text-muted);
+  }
+
+  .module-badge.difficulty {
+    border-color: var(--htb-green);
+    color: var(--htb-green);
+  }
+
+  .module-badge.tier {
+    border-color: var(--mechanicus-orange);
+    color: var(--mechanicus-orange);
   }
 
   .current-module-name {
@@ -215,6 +250,73 @@ order: 6
     font-size: 1.3rem;
     font-weight: 700;
     font-family: 'Courier New', monospace;
+    margin-bottom: 1rem;
+  }
+
+  .module-progress-container {
+    margin-top: 1rem;
+  }
+
+  .module-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .module-progress-label {
+    color: var(--mechanicus-text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .module-progress-percent {
+    color: var(--mechanicus-orange);
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+  }
+
+  .module-progress-bar {
+    width: 100%;
+    height: 20px;
+    background: var(--mechanicus-dark-grey);
+    border: 1px solid var(--mechanicus-border);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .module-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--mechanicus-orange), #ff8c00);
+    transition: width 1s ease;
+    position: relative;
+  }
+
+  .module-progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255, 255, 255, 0.2), 
+      transparent
+    );
+    animation: shimmer 2s infinite;
+  }
+
+  .module-sections {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--mechanicus-text-muted);
   }
 
   .last-updated {
@@ -338,6 +440,11 @@ order: 6
     .timeline-section {
       margin: 3rem 0.5rem;
     }
+
+    .current-module-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 
   @media (max-width: 580px) {
@@ -364,6 +471,10 @@ order: 6
 
     .timeline-item::before {
       left: -2.2rem;
+    }
+
+    .current-module-name {
+      font-size: 1.1rem;
     }
   }
 </style>
@@ -414,8 +525,25 @@ order: 6
   </div>
 
   <div class="current-module" id="current-module-container" style="display: none;">
-    <div class="current-module-label">📚 Module en cours</div>
+    <div class="current-module-header">
+      <div class="current-module-label">📚 Module en cours</div>
+      <div class="current-module-badge" id="module-badges"></div>
+    </div>
     <div class="current-module-name" id="current-module-name">--</div>
+    
+    <div class="module-progress-container">
+      <div class="module-progress-header">
+        <span class="module-progress-label">Progression du module</span>
+        <span class="module-progress-percent" id="module-progress-percent">0%</span>
+      </div>
+      <div class="module-progress-bar">
+        <div class="module-progress-fill" id="module-progress-fill" style="width: 0%"></div>
+      </div>
+      <div class="module-sections">
+        <span id="module-sections-info">-- / -- sections</span>
+        <span id="module-time-info">⏱️ --</span>
+      </div>
+    </div>
   </div>
 
   <div class="last-updated">
@@ -531,20 +659,57 @@ order: 6
       console.log('  - Modules restants:', remainingCount);
     }
     
-    // Module en cours
-    const currentModuleContainer = document.getElementById('current-module-container');
-    const currentModuleName = document.getElementById('current-module-name');
-    
-    if (data.current_module && data.current_module !== 'En attente de mise à jour') {
-      if (currentModuleContainer) {
-        currentModuleContainer.style.display = 'block';
+    // Module en cours avec détails
+    if (data.modules && data.modules.length > 0) {
+      const currentModule = data.modules.find(m => m.state === 'in_progress');
+      
+      if (currentModule) {
+        console.log('  - Module en cours trouvé:', currentModule.name);
+        
+        const currentModuleContainer = document.getElementById('current-module-container');
+        const currentModuleName = document.getElementById('current-module-name');
+        const moduleBadges = document.getElementById('module-badges');
+        const moduleProgressPercent = document.getElementById('module-progress-percent');
+        const moduleProgressFill = document.getElementById('module-progress-fill');
+        const moduleSectionsInfo = document.getElementById('module-sections-info');
+        const moduleTimeInfo = document.getElementById('module-time-info');
+        
+        if (currentModuleContainer) {
+          currentModuleContainer.style.display = 'block';
+        }
+        
+        if (currentModuleName) {
+          currentModuleName.textContent = currentModule.name;
+        }
+        
+        // Badges (difficulté et tier)
+        if (moduleBadges && currentModule.difficulty && currentModule.tier) {
+          moduleBadges.innerHTML = `
+            <span class="module-badge difficulty">${currentModule.difficulty}</span>
+            <span class="module-badge tier">${currentModule.tier}</span>
+          `;
+        }
+        
+        // Progression du module
+        if (moduleProgressPercent) {
+          moduleProgressPercent.textContent = currentModule.progress + '%';
+        }
+        
+        if (moduleProgressFill) {
+          moduleProgressFill.style.width = currentModule.progress + '%';
+        }
+        
+        // Sections
+        if (moduleSectionsInfo && currentModule.sections_count) {
+          const completedSections = Math.floor((currentModule.progress / 100) * currentModule.sections_count);
+          moduleSectionsInfo.textContent = `${completedSections} / ${currentModule.sections_count} sections`;
+        }
+        
+        // Temps estimé
+        if (moduleTimeInfo && currentModule.estimated_time) {
+          moduleTimeInfo.textContent = `⏱️ ${currentModule.estimated_time}`;
+        }
       }
-      if (currentModuleName) {
-        currentModuleName.textContent = data.current_module;
-        console.log('  - Module en cours:', data.current_module);
-      }
-    } else {
-      console.log('  - Aucun module en cours');
     }
     
     // Dernière mise à jour
