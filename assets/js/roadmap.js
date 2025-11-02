@@ -1,30 +1,34 @@
 // Roadmap HTB Academy Progress - JavaScript
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('🎯 Chargement des données HTB...');
-  loadHTBProgress();
+  console.log('🎯 Initialisation de la Roadmap HTB...');
+  
+  // Récupérer les données depuis le script JSON injecté
+  const dataScript = document.getElementById('htb-data');
+  
+  if (!dataScript) {
+    console.error('❌ Script htb-data non trouvé');
+    displayHTBProgressError();
+    return;
+  }
+  
+  try {
+    const htbData = JSON.parse(dataScript.textContent);
+    console.log('✅ Données HTB chargées:', htbData);
+    
+    if (htbData && htbData.overall_progress !== undefined) {
+      displayHTBProgress(htbData);
+    } else {
+      console.error('❌ Données HTB invalides');
+      displayHTBProgressError();
+    }
+  } catch (error) {
+    console.error('❌ Erreur parsing JSON:', error);
+    displayHTBProgressError();
+  }
 });
 
-function loadHTBProgress() {
-  // Charger le fichier JSON
-  fetch('/_data/htb-progress.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('✅ Données HTB chargées:', data);
-      displayHTBProgress(data);
-    })
-    .catch(error => {
-      console.error('❌ Erreur lors du chargement des données HTB:', error);
-      displayHTBProgressError();
-    });
-}
-
 function displayHTBProgress(data) {
-  console.log('📊 Affichage des données...');
+  console.log('📊 Affichage des données HTB...');
   
   // Progression globale
   const progressPercent = document.getElementById('htb-progress-percent');
@@ -32,6 +36,7 @@ function displayHTBProgress(data) {
   
   if (progressPercent) {
     progressPercent.textContent = data.overall_progress + '%';
+    console.log('  - Progression:', data.overall_progress + '%');
   }
   
   if (progressBar) {
@@ -45,27 +50,32 @@ function displayHTBProgress(data) {
   
   if (completedModules) {
     completedModules.textContent = data.completed_modules || 0;
+    console.log('  - Modules complétés:', data.completed_modules);
   }
   
   if (totalModules) {
     totalModules.textContent = data.total_modules || 28;
+    console.log('  - Total modules:', data.total_modules);
   }
   
   if (remaining) {
-    remaining.textContent = (data.total_modules || 28) - (data.completed_modules || 0);
+    const remainingCount = (data.total_modules || 28) - (data.completed_modules || 0);
+    remaining.textContent = remainingCount;
+    console.log('  - Modules restants:', remainingCount);
   }
   
-  // Module en cours
-  const currentModuleContainer = document.getElementById('current-module-container');
-  const currentModuleName = document.getElementById('current-module-name');
-  
-  if (data.current_module && data.current_module !== 'En attente de mise à jour') {
-    if (currentModuleContainer) {
-      currentModuleContainer.style.display = 'block';
+  // Module en cours avec détails
+  if (data.modules && data.modules.length > 0) {
+    const currentModule = data.modules.find(m => m.state === 'in_progress');
+    
+    if (currentModule) {
+      console.log('  - Module en cours trouvé:', currentModule.name);
+      displayCurrentModule(currentModule);
+    } else {
+      console.log('  - Aucun module en cours (state=in_progress)');
     }
-    if (currentModuleName) {
-      currentModuleName.textContent = data.current_module;
-    }
+  } else {
+    console.log('  - Aucun module dans les données');
   }
   
   // Dernière mise à jour
@@ -80,13 +90,75 @@ function displayHTBProgress(data) {
       minute: '2-digit' 
     };
     lastUpdated.textContent = date.toLocaleDateString('fr-FR', options);
+    console.log('  - Dernière mise à jour:', date.toLocaleDateString('fr-FR', options));
   }
   
-  console.log('✅ Affichage terminé');
+  console.log('✅ Affichage terminé avec succès');
+}
+
+function displayCurrentModule(module) {
+  console.log('📚 Affichage du module en cours:', module);
+  
+  const currentModuleContainer = document.getElementById('current-module-container');
+  const currentModuleName = document.getElementById('current-module-name');
+  const moduleBadges = document.getElementById('module-badges');
+  const moduleProgressPercent = document.getElementById('module-progress-percent');
+  const moduleProgressFill = document.getElementById('module-progress-fill');
+  const moduleSectionsInfo = document.getElementById('module-sections-info');
+  const moduleTimeInfo = document.getElementById('module-time-info');
+  
+  // Afficher le container
+  if (currentModuleContainer) {
+    currentModuleContainer.style.display = 'block';
+  }
+  
+  // Nom du module
+  if (currentModuleName) {
+    currentModuleName.textContent = module.name;
+  }
+  
+  // Badges (difficulté et tier)
+  if (moduleBadges) {
+    let badgesHTML = '';
+    
+    if (module.difficulty) {
+      badgesHTML += `<span class="module-badge difficulty">${module.difficulty}</span>`;
+    }
+    
+    if (module.tier) {
+      badgesHTML += `<span class="module-badge tier">${module.tier}</span>`;
+    }
+    
+    moduleBadges.innerHTML = badgesHTML;
+    console.log('  - Badges ajoutés:', module.difficulty, module.tier);
+  }
+  
+  // Progression du module
+  if (moduleProgressPercent) {
+    moduleProgressPercent.textContent = module.progress + '%';
+    console.log('  - Progression module:', module.progress + '%');
+  }
+  
+  if (moduleProgressFill) {
+    moduleProgressFill.style.width = module.progress + '%';
+  }
+  
+  // Sections (calculer les sections complétées)
+  if (moduleSectionsInfo && module.sections_count) {
+    const completedSections = Math.floor((module.progress / 100) * module.sections_count);
+    moduleSectionsInfo.textContent = `${completedSections} / ${module.sections_count} sections`;
+    console.log('  - Sections:', completedSections, '/', module.sections_count);
+  }
+  
+  // Temps estimé
+  if (moduleTimeInfo && module.estimated_time) {
+    moduleTimeInfo.textContent = `⏱️ ${module.estimated_time}`;
+    console.log('  - Temps estimé:', module.estimated_time);
+  }
 }
 
 function displayHTBProgressError() {
-  console.error('⚠️ Affichage du mode erreur');
+  console.error('⚠️ Affichage en mode erreur');
   
   // Afficher des valeurs par défaut
   const elements = {
@@ -109,4 +181,6 @@ function displayHTBProgressError() {
   if (currentModuleContainer) {
     currentModuleContainer.style.display = 'none';
   }
+  
+  console.log('⚠️ Valeurs par défaut affichées');
 }
