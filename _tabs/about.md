@@ -26,12 +26,14 @@ J'ai créé ce site pour plusieurs raisons :
 ## 🔐 Ce que je fais
 
 Je me concentre actuellement sur la cybersécurité offensive, principalement à travers :
-- **TryHackMe** : ma plateforme principale pour les exercices pratiques
-- **HackTheBox** : pour les challenges plus techniques
+- **TryHackMe** : mon ancienne platforme pour faire de la théorie et un peu de pratique
+- **HackTheBox** : ma platforme principale pour des cours plus poussé et mieux reconnu à l'international
 - **Veille technologique** : articles, docs, CVE, pour rester à jour
 - **Projets personnels** : scripts et outils que je développe
 
-[![TryHackMe Badge](https://tryhackme-badges.s3.amazonaws.com/Xufox.png)](https://tryhackme.com/p/Xufox)
+> Top 7% et league **Sapphire** sur Tryhackme
+
+[![TryHackMe Badge]()
 
 > Cette image est statique et peut ne pas refléter mes statistiques actuelles. Consulte mon profil TryHackMe pour les données en temps réel !
 {: .prompt-danger }
