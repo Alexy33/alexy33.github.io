@@ -107,6 +107,7 @@ def get_htb_progress():
                     progress_data['modules'].append(module_info)
                     
                     # Si le module est en cours, c'est celui-ci qu'on affiche
+                    # CORRECTION: Ne plus vérifier progress > 0, juste le state
                     if module_info['state'] == 'in_progress':
                         progress_data['current_module'] = module_info['name']
                         print(f"📖 Module en cours: {module_info['name']} ({module_info['progress']}%)")
@@ -120,8 +121,26 @@ def get_htb_progress():
             if completed_response.status_code == 200:
                 completed_data = completed_response.json()
                 if 'data' in completed_data:
-                    progress_data['completed_modules'] = len(completed_data['data'])
+                    completed_modules = completed_data['data']
+                    progress_data['completed_modules'] = len(completed_modules)
                     print(f"✅ Modules complétés: {progress_data['completed_modules']}")
+                    
+                    # Ajouter aussi les modules complétés à la liste
+                    for module in completed_modules:
+                        module_info = {
+                            'id': module.get('id', 0),
+                            'name': module.get('name', 'Unknown'),
+                            'slug': module.get('slug', ''),
+                            'progress': 100,  # Complété = 100%
+                            'state': 'completed',
+                            'sections_count': module.get('sections_count', 0),
+                            'current_section_id': None,
+                            'difficulty': module.get('difficulty', {}).get('text', 'Unknown'),
+                            'tier': module.get('tier', {}).get('name', 'Unknown'),
+                            'estimated_time': module.get('estimated_time_of_completion', 'Unknown')
+                        }
+                        progress_data['modules'].append(module_info)
+                        print(f"   ✓ {module_info['name']}")
             
             # Calculer le pourcentage de progression
             if progress_data['total_modules'] > 0:
