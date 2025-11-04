@@ -214,6 +214,6 @@ Dans cette étape, nous documentons en détail les actions entreprises pour comp
 
 Après notre intervention, nous préparons une documentation détaillée à destination des administrateurs et de la direction de l'entreprise cliente afin de leur permettre d'appréhender la gravité des vulnérabilités identifiées. À ce stade, nous effaçons également toute trace de notre intervention sur l'ensemble des hôtes et serveurs. Nous créons ensuite les livrables pour notre client, organisons une réunion de présentation du rapport et, le cas échéant, présentons un exposé aux dirigeants ou au conseil d'administration de l'entreprise cible. Enfin, conformément à nos obligations contractuelles et à la politique de l'entreprise, nous archivons nos données de test. Ces données sont généralement conservées pendant une période déterminée ou jusqu'à la réalisation d'une évaluation post-correction (retest) afin de vérifier l'efficacité des correctifs mis en place par le client.
 
-**Cours complétée**
+**Cours complété**
 
 {% include comments.html %}

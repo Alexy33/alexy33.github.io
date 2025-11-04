@@ -355,6 +355,6 @@ Ici, la `qualité` et `l'intensité` de notre test d'intrusion et de son analyse
 
 **Réponse :** `Predictive`
 
-**Cours complétée**
+**Cours complété**
 
 {% include comments.html %}

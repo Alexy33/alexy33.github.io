@@ -108,6 +108,6 @@ Notre objectif est de faire de vous des testeurs d'intrusion et des spécialiste
 
 Persévérez dans l'apprentissage, même si vous avez des difficultés à comprendre certains points. Nos supports et nos outils sont réputés pour être complexes pour les débutants. C'est vrai, sans connaissances préalables, mais cela ne vous empêche pas `d'apprendre par vous-même`.
 
-**Cours complétée**
+**Cours complété**
 
 {% include comments.html %}
