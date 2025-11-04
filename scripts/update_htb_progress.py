@@ -116,12 +116,21 @@ def get_htb_progress():
             completed_url = f"{BASE_URL}/api/v2/paths/{PATH_ID}/modules"
             completed_params = {'state': 'completed'}
             
+            print(f"📡 Requête modules complétés: {completed_url}")
+            print(f"   Paramètres: {completed_params}")
+            
             completed_response = session.get(completed_url, params=completed_params, timeout=30)
+            
+            print(f"📊 Statut réponse completed: {completed_response.status_code}")
             
             if completed_response.status_code == 200:
                 completed_data = completed_response.json()
+                print(f"📦 Données reçues: {completed_data.keys() if completed_data else 'None'}")
+                
                 if 'data' in completed_data:
                     completed_modules = completed_data['data']
+                    print(f"📚 Modules complétés trouvés: {len(completed_modules)}")
+                    
                     progress_data['completed_modules'] = len(completed_modules)
                     print(f"✅ Modules complétés: {progress_data['completed_modules']}")
                     
@@ -141,6 +150,12 @@ def get_htb_progress():
                         }
                         progress_data['modules'].append(module_info)
                         print(f"   ✓ {module_info['name']}")
+                else:
+                    print("⚠️ Pas de clé 'data' dans la réponse completed")
+                    print(f"   Réponse: {completed_data}")
+            else:
+                print(f"❌ Erreur requête completed: {completed_response.status_code}")
+                print(f"   Réponse: {completed_response.text}")
             
             # Calculer le pourcentage de progression
             if progress_data['total_modules'] > 0:
