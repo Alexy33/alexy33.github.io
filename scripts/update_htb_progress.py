@@ -112,50 +112,51 @@ def get_htb_progress():
                         progress_data['current_module'] = module_info['name']
                         print(f"📖 Module en cours: {module_info['name']} ({module_info['progress']}%)")
             
-            # Récupérer le nombre total de modules complétés via une autre requête
-            completed_url = f"{BASE_URL}/api/v2/paths/{PATH_ID}/modules"
-            completed_params = {'state': 'completed'}
+            # Récupérer TOUS les modules du path (sans filtre state)
+            all_modules_url = f"{BASE_URL}/api/v2/paths/{PATH_ID}/modules"
             
-            print(f"📡 Requête modules complétés: {completed_url}")
-            print(f"   Paramètres: {completed_params}")
+            print(f"📡 Requête tous les modules: {all_modules_url}")
             
-            completed_response = session.get(completed_url, params=completed_params, timeout=30)
+            all_modules_response = session.get(all_modules_url, timeout=30)
             
-            print(f"📊 Statut réponse completed: {completed_response.status_code}")
+            print(f"📊 Statut réponse tous modules: {all_modules_response.status_code}")
             
-            if completed_response.status_code == 200:
-                completed_data = completed_response.json()
-                print(f"📦 Données reçues: {completed_data.keys() if completed_data else 'None'}")
+            if all_modules_response.status_code == 200:
+                all_modules_data = all_modules_response.json()
                 
-                if 'data' in completed_data:
-                    completed_modules = completed_data['data']
-                    print(f"📚 Modules complétés trouvés: {len(completed_modules)}")
+                if 'data' in all_modules_data:
+                    all_modules = all_modules_data['data']
+                    print(f"📚 Total modules récupérés: {len(all_modules)}")
                     
+                    # Filtrer les modules complétés
+                    completed_modules = [m for m in all_modules if m.get('state') == 'completed']
                     progress_data['completed_modules'] = len(completed_modules)
                     print(f"✅ Modules complétés: {progress_data['completed_modules']}")
                     
-                    # Ajouter aussi les modules complétés à la liste
+                    # Ajouter les modules complétés à la liste (s'ils ne sont pas déjà là)
+                    existing_ids = [m['id'] for m in progress_data['modules']]
+                    
                     for module in completed_modules:
-                        module_info = {
-                            'id': module.get('id', 0),
-                            'name': module.get('name', 'Unknown'),
-                            'slug': module.get('slug', ''),
-                            'progress': 100,  # Complété = 100%
-                            'state': 'completed',
-                            'sections_count': module.get('sections_count', 0),
-                            'current_section_id': None,
-                            'difficulty': module.get('difficulty', {}).get('text', 'Unknown'),
-                            'tier': module.get('tier', {}).get('name', 'Unknown'),
-                            'estimated_time': module.get('estimated_time_of_completion', 'Unknown')
-                        }
-                        progress_data['modules'].append(module_info)
-                        print(f"   ✓ {module_info['name']}")
+                        if module.get('id') not in existing_ids:
+                            module_info = {
+                                'id': module.get('id', 0),
+                                'name': module.get('name', 'Unknown'),
+                                'slug': module.get('slug', ''),
+                                'progress': 100,  # Complété = 100%
+                                'state': 'completed',
+                                'sections_count': module.get('sections_count', 0),
+                                'current_section_id': None,
+                                'difficulty': module.get('difficulty', {}).get('text', 'Unknown'),
+                                'tier': module.get('tier', {}).get('name', 'Unknown'),
+                                'estimated_time': module.get('estimated_time_of_completion', 'Unknown')
+                            }
+                            progress_data['modules'].append(module_info)
+                            print(f"   ✓ {module_info['name']}")
                 else:
-                    print("⚠️ Pas de clé 'data' dans la réponse completed")
-                    print(f"   Réponse: {completed_data}")
+                    print("⚠️ Pas de clé 'data' dans la réponse tous modules")
             else:
-                print(f"❌ Erreur requête completed: {completed_response.status_code}")
-                print(f"   Réponse: {completed_response.text}")
+                print(f"❌ Erreur requête tous modules: {all_modules_response.status_code}")
+                print(f"   Réponse: {all_modules_response.text}")
             
             # Calculer le pourcentage de progression
             if progress_data['total_modules'] > 0:
