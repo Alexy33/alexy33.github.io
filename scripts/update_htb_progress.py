@@ -128,6 +128,15 @@ def get_htb_progress():
                     all_modules = all_modules_data['data']
                     print(f"📚 Total modules récupérés: {len(all_modules)}")
                     
+                    # DEBUG: Afficher les états de tous les modules
+                    print("\n🔍 États des modules:")
+                    for m in all_modules:
+                        state = m.get('state', 'unknown')
+                        name = m.get('name', 'Unknown')[:30]  # Limiter à 30 chars
+                        progress = m.get('progress', 0)
+                        print(f"   • {name}: state='{state}', progress={progress}%")
+                    print()
+                    
                     # Filtrer les modules complétés
                     completed_modules = [m for m in all_modules if m.get('state') == 'completed']
                     progress_data['completed_modules'] = len(completed_modules)
