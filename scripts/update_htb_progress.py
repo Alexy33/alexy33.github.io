@@ -107,7 +107,7 @@ def get_htb_progress():
                     progress_data['modules'].append(module_info)
                     
                     # Si le module est en cours, c'est celui-ci qu'on affiche
-                    if module_info['state'] == 'in_progress' and module_info['progress'] > 0:
+                    if module_info['state'] == 'in_progress':
                         progress_data['current_module'] = module_info['name']
                         print(f"📖 Module en cours: {module_info['name']} ({module_info['progress']}%)")
             
