@@ -137,8 +137,8 @@ def get_htb_progress():
                         print(f"   • {name}: state='{state}', progress={progress}%")
                     print()
                     
-                    # Filtrer les modules complétés
-                    completed_modules = [m for m in all_modules if m.get('state') == 'completed']
+                    # Filtrer les modules complétés (owned = terminé sur HTB)
+                    completed_modules = [m for m in all_modules if m.get('state') == 'owned']
                     progress_data['completed_modules'] = len(completed_modules)
                     print(f"✅ Modules complétés: {progress_data['completed_modules']}")
                     
@@ -152,7 +152,7 @@ def get_htb_progress():
                                 'name': module.get('name', 'Unknown'),
                                 'slug': module.get('slug', ''),
                                 'progress': 100,  # Complété = 100%
-                                'state': 'completed',
+                                'state': 'owned',  # État HTB pour module complété
                                 'sections_count': module.get('sections_count', 0),
                                 'current_section_id': None,
                                 'difficulty': module.get('difficulty', {}).get('text', 'Unknown'),
