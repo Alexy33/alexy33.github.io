@@ -9,6 +9,12 @@ on:
       - README.md
       - LICENSE
 
+  # Déclencher après le workflow HTB
+  workflow_run:
+    workflows: ["Update HTB Academy Progress"]
+    types:
+      - completed
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
