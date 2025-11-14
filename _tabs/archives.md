@@ -654,7 +654,7 @@ order: 3
 
 <div class="archives-header">
   <h1>ARCHIVES</h1>
-  <p>Chronologie complète de mes write-ups et challenges</p>
+  <p>Chronologie complète de mes write-ups / cours que je post ici pour vous partager mon chemin de pensée ainsi que les cours pour que vous puissiez apprendre aussi avec moi !</p>
 </div>
 
 <!-- Section de tri par date -->

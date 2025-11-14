@@ -443,7 +443,7 @@ order: 2
 
 <div class="tags-header">
   <h1>DATA ARCHIVES</h1>
-  <p>Classification des données par mots-clés</p>
+  <p>Classification des tags sur chacuns de mes cours / challenges pour pouvoir les différencier c'est a dire que si vous cherchez une compétence en particulier que j'ai pu faire dans tout mes write-up sans avoir a regarder tout ce que j'ai fait, vous pouvez chercher ce qui <strong>VOUS</strong> intéresse ici !</p>
 </div>
 
 <div class="stats-container">
