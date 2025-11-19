@@ -2,23 +2,23 @@
   "username": "Arcony",
   "path_id": 16,
   "path_name": "Penetration Tester",
-  "last_updated": "2025-11-18T06:23:33.468443",
-  "overall_progress": 7,
-  "completed_modules": 2,
+  "last_updated": "2025-11-19T06:23:12.315240",
+  "overall_progress": 10,
+  "completed_modules": 3,
   "total_modules": 28,
-  "current_module": "Network Enumeration with Nmap",
+  "current_module": "Footprinting",
   "modules": [
     {
-      "id": 19,
-      "name": "Network Enumeration with Nmap",
-      "slug": "network-enumeration-with-nmap",
-      "progress": 66.67,
+      "id": 112,
+      "name": "Footprinting",
+      "slug": "footprinting",
+      "progress": 0,
       "state": "in_progress",
-      "sections_count": 12,
-      "current_section_id": 106,
-      "difficulty": "Easy",
-      "tier": "Tier I",
-      "estimated_time": "7 hours"
+      "sections_count": 21,
+      "current_section_id": 1060,
+      "difficulty": "Medium",
+      "tier": "Tier II",
+      "estimated_time": "2 days"
     },
     {
       "id": 90,
@@ -43,6 +43,18 @@
       "difficulty": "Fundamental",
       "tier": "Tier 0",
       "estimated_time": "8 hours"
+    },
+    {
+      "id": 19,
+      "name": "Network Enumeration with Nmap",
+      "slug": "network-enumeration-with-nmap",
+      "progress": 100,
+      "state": "owned",
+      "sections_count": 12,
+      "current_section_id": null,
+      "difficulty": "Easy",
+      "tier": "Tier I",
+      "estimated_time": "7 hours"
     }
   ]
 }
