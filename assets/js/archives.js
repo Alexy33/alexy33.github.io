@@ -1,5 +1,7 @@
-// Archives page JavaScript
+// Archives page JavaScript - Version compacte
 document.addEventListener('DOMContentLoaded', function() {
+  console.log('✅ Page Archives chargée (version compacte)');
+  
   // Initialisation des statistiques
   updateStats();
   
@@ -8,8 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
     post.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
   });
   
-  // Gestion de l'affichage des filtres de difficulté
-  updateDifficultyFilters('all');
+  // Mettre à jour les compteurs d'année
+  updateYearCounts();
 });
 
 function updateStats() {
@@ -36,6 +38,22 @@ function updateStats() {
   animateCounter('htb-posts', htbCount);
   animateCounter('learning-posts', learningCount);
   animateCounter('challenge-posts', challengeCount);
+  
+  console.log(`📊 Stats: ${totalCount} posts total (THM: ${thmCount}, HTB: ${htbCount})`);
+}
+
+function updateYearCounts() {
+  const yearSections = document.querySelectorAll('.year-section');
+  
+  yearSections.forEach(section => {
+    const posts = section.querySelectorAll('.post-item');
+    const count = posts.length;
+    const yearCount = section.querySelector('.year-count');
+    
+    if (yearCount) {
+      yearCount.textContent = count;
+    }
+  });
 }
 
 function animateCounter(elementId, targetValue) {
@@ -61,7 +79,6 @@ function animateCounter(elementId, targetValue) {
 let currentFilters = {
   platform: 'all',
   type: 'all',
-  difficulty: 'all',
   sort: 'recent'
 };
 
@@ -69,98 +86,59 @@ function sortByDate(sortType) {
   currentFilters.sort = sortType;
   
   // Gestion des boutons actifs
-  document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.filter-btn-small[id^="btn-sort-"]').forEach(btn => {
+    btn.classList.remove('active');
+  });
   const activeBtn = document.getElementById(`btn-sort-${sortType}`);
   if (activeBtn) activeBtn.classList.add('active');
   
+  console.log(`🔄 Tri: ${sortType}`);
   applyFiltersAndSort();
 }
 
 function filterByPlatform(platform) {
   currentFilters.platform = platform;
-  currentFilters.type = 'all';
-  currentFilters.difficulty = 'all';
   
   // Gestion des boutons actifs
-  document.querySelectorAll('.platform-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.filter-btn-small[id^="btn-platform-"]').forEach(btn => {
+    btn.classList.remove('active');
+  });
   const activeBtn = document.getElementById(`btn-platform-${platform}`);
   if (activeBtn) activeBtn.classList.add('active');
   
-  // Réinitialiser les autres filtres
-  document.querySelectorAll('.type-btn').forEach(btn => btn.classList.remove('active'));
-  document.getElementById('btn-type-all').classList.add('active');
-  
-  document.querySelectorAll('.difficulty-btn').forEach(btn => btn.classList.remove('active'));
-  const allDiffBtn = document.getElementById('btn-difficulty-all');
-  if (allDiffBtn) allDiffBtn.classList.add('active');
-  
-  // Afficher les filtres de difficulté appropriés
-  updateDifficultyFilters(platform);
-  
+  console.log(`🎯 Filtre plateforme: ${platform}`);
   applyFiltersAndSort();
 }
 
 function filterByType(type) {
   currentFilters.type = type;
-  currentFilters.difficulty = 'all';
   
   // Gestion des boutons actifs
-  document.querySelectorAll('.type-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.filter-btn-small[id^="btn-type-"]').forEach(btn => {
+    btn.classList.remove('active');
+  });
   const activeBtn = document.getElementById(`btn-type-${type}`);
   if (activeBtn) activeBtn.classList.add('active');
   
-  // Réinitialiser le filtre de difficulté
-  document.querySelectorAll('.difficulty-btn').forEach(btn => btn.classList.remove('active'));
-  const allDiffBtn = document.getElementById('btn-difficulty-all');
-  if (allDiffBtn) allDiffBtn.classList.add('active');
-  
+  console.log(`📚 Filtre type: ${type}`);
   applyFiltersAndSort();
-}
-
-function filterByDifficulty(difficulty) {
-  currentFilters.difficulty = difficulty;
-  
-  // Gestion des boutons actifs
-  document.querySelectorAll('.difficulty-btn').forEach(btn => btn.classList.remove('active'));
-  const activeBtn = document.getElementById(`btn-difficulty-${difficulty}`);
-  if (activeBtn) activeBtn.classList.add('active');
-  
-  applyFiltersAndSort();
-}
-
-function updateDifficultyFilters(platform) {
-  const thmDifficulty = document.getElementById('thm-difficulty');
-  const htbDifficulty = document.getElementById('htb-difficulty');
-  
-  if (platform === 'thm') {
-    thmDifficulty.style.display = 'block';
-    htbDifficulty.style.display = 'none';
-  } else if (platform === 'htb') {
-    thmDifficulty.style.display = 'none';
-    htbDifficulty.style.display = 'block';
-  } else {
-    thmDifficulty.style.display = 'none';
-    htbDifficulty.style.display = 'none';
-  }
 }
 
 function applyFiltersAndSort() {
   const yearSections = document.querySelectorAll('.year-section');
-  const visibleYears = new Set();
-  let visibleCount = 0;
+  let totalVisibleCount = 0;
   
   // Pour chaque section d'année
   yearSections.forEach(yearSection => {
     const posts = yearSection.querySelectorAll('.post-item');
     const postsArray = Array.from(posts);
     const postsList = yearSection.querySelector('.posts-list');
-    const year = yearSection.dataset.year;
+    const yearCount = yearSection.querySelector('.year-count');
     
     // Filtrage
     let visiblePostsInYear = postsArray.filter(post => {
       const platform = post.dataset.platform;
       const type = post.dataset.type;
-      const difficulty = post.dataset.difficulty;
       
       let shouldShow = true;
       
@@ -171,11 +149,6 @@ function applyFiltersAndSort() {
       
       // Filtre par type
       if (currentFilters.type !== 'all' && type !== currentFilters.type) {
-        shouldShow = false;
-      }
-      
-      // Filtre par difficulté
-      if (currentFilters.difficulty !== 'all' && difficulty !== currentFilters.difficulty) {
         shouldShow = false;
       }
       
@@ -204,19 +177,23 @@ function applyFiltersAndSort() {
     visiblePostsInYear.forEach((post, index) => {
       postsList.appendChild(post);
       setTimeout(() => {
-        post.style.display = 'flex';
+        post.style.display = 'block';
         setTimeout(() => {
           post.style.opacity = '1';
-          post.style.transform = 'translateY(0)';
+          post.style.transform = 'translateX(0)';
         }, 10);
       }, index * 30);
     });
     
+    // Mettre à jour le compteur d'année
+    if (yearCount) {
+      yearCount.textContent = visiblePostsInYear.length;
+    }
+    
     // Gérer la visibilité de la section année
     if (visiblePostsInYear.length > 0) {
       yearSection.style.display = 'block';
-      visibleYears.add(year);
-      visibleCount += visiblePostsInYear.length;
+      totalVisibleCount += visiblePostsInYear.length;
     } else {
       yearSection.style.display = 'none';
     }
@@ -241,35 +218,61 @@ function applyFiltersAndSort() {
     timelineContainer.appendChild(section);
   });
   
-  updateNoResults(visibleCount === 0);
+  console.log(`✅ ${totalVisibleCount} posts affichés`);
+  updateNoResults(totalVisibleCount === 0);
 }
 
 function searchPosts() {
   const searchTerm = document.getElementById('post-search').value.toLowerCase();
   const yearSections = document.querySelectorAll('.year-section');
-  let visibleCount = 0;
+  let totalVisibleCount = 0;
+  
+  if (searchTerm === '') {
+    // Si la recherche est vide, réappliquer les filtres normaux
+    applyFiltersAndSort();
+    return;
+  }
   
   yearSections.forEach(yearSection => {
     const posts = yearSection.querySelectorAll('.post-item');
+    const yearCount = yearSection.querySelector('.year-count');
     let visiblePostsInYear = 0;
     
     posts.forEach(post => {
       const title = post.dataset.title.toLowerCase();
+      const platform = post.dataset.platform;
+      const type = post.dataset.type;
       
-      if (title.includes(searchTerm)) {
-        post.style.display = 'flex';
+      // Vérifier si le post correspond à la recherche ET aux filtres actifs
+      let shouldShow = title.includes(searchTerm);
+      
+      if (shouldShow && currentFilters.platform !== 'all' && platform !== currentFilters.platform) {
+        shouldShow = false;
+      }
+      
+      if (shouldShow && currentFilters.type !== 'all' && type !== currentFilters.type) {
+        shouldShow = false;
+      }
+      
+      if (shouldShow) {
+        post.style.display = 'block';
         post.style.opacity = '1';
-        post.style.transform = 'translateY(0)';
+        post.style.transform = 'translateX(0)';
         visiblePostsInYear++;
-        visibleCount++;
+        totalVisibleCount++;
       } else {
         post.style.opacity = '0';
-        post.style.transform = 'translateY(-10px)';
+        post.style.transform = 'translateX(-10px)';
         setTimeout(() => {
           post.style.display = 'none';
         }, 200);
       }
     });
+    
+    // Mettre à jour le compteur d'année
+    if (yearCount) {
+      yearCount.textContent = visiblePostsInYear;
+    }
     
     // Gérer la visibilité de la section année
     if (visiblePostsInYear > 0) {
@@ -279,7 +282,8 @@ function searchPosts() {
     }
   });
   
-  updateNoResults(visibleCount === 0);
+  console.log(`🔍 Recherche "${searchTerm}": ${totalVisibleCount} résultats`);
+  updateNoResults(totalVisibleCount === 0);
 }
 
 function updateNoResults(show) {

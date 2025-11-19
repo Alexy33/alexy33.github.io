@@ -45,77 +45,15 @@ order: 3
     letter-spacing: 1px;
   }
 
-  .sort-section {
-    background: var(--mechanicus-dark-grey);
-    border: 1px solid var(--mechanicus-border);
-    border-radius: 2px;
-    padding: 1rem 1.5rem;
-    margin: 0 1rem 2rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .sort-label {
-    color: var(--mechanicus-white);
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .sort-buttons {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-  }
-
-  .sort-btn {
-    padding: 0.6rem 1.2rem;
-    background: var(--mechanicus-black);
-    color: var(--mechanicus-text);
-    border: 1px solid var(--mechanicus-border);
-    border-radius: 2px;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.25s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: 'Courier New', monospace;
-  }
-
-  .sort-btn:hover {
-    background: var(--mechanicus-orange-subtle);
-    border-color: var(--mechanicus-orange);
-    color: var(--mechanicus-white);
-  }
-
-  .sort-btn.active {
-    background: var(--mechanicus-orange-subtle);
-    color: var(--mechanicus-white);
-    border-color: var(--mechanicus-orange);
-    font-weight: 700;
-  }
-
-  .sort-btn i {
-    font-size: 0.9rem;
-  }
-
   .stats-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     padding: 0 1rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .stat-card {
@@ -148,99 +86,80 @@ order: 3
     letter-spacing: 1.5px;
   }
 
-  .mechanicus-divider {
-    height: 1px;
-    background: linear-gradient(to right, 
-      transparent, 
-      var(--mechanicus-border) 20%, 
-      var(--mechanicus-border) 80%, 
-      transparent
-    );
-    margin: 2.5rem 1rem;
-  }
-
-  .filters-section {
+  /* Filtres compacts en haut */
+  .compact-filters {
     background: var(--mechanicus-dark-grey);
     border: 1px solid var(--mechanicus-border);
     border-radius: 2px;
-    padding: 1.5rem;
-    margin: 0 1rem 2.5rem 1rem;
+    padding: 1.2rem;
+    margin: 0 1rem 2rem 1rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .filter-group {
-    margin-bottom: 1.5rem;
-  }
-
-  .filter-group:last-child {
-    margin-bottom: 0;
-  }
-
-  .filter-label {
-    color: var(--mechanicus-white);
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 1rem;
-    font-weight: 600;
+  .filters-row {
     display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
+  }
+
+  .filter-group-inline {
+    display: flex;
     gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
   }
 
-  .filter-label-number {
-    background: var(--mechanicus-orange-subtle);
-    color: var(--mechanicus-orange);
-    border: 1px solid var(--mechanicus-orange);
-    padding: 0.2rem 0.5rem;
-    border-radius: 2px;
-    font-size: 0.7rem;
-    font-weight: 700;
+  .filter-label-inline {
+    color: var(--mechanicus-white);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    white-space: nowrap;
   }
 
-  .filter-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 0.75rem;
-  }
-
-  .filter-btn {
-    padding: 0.7rem 1rem;
+  .filter-btn-small {
+    padding: 0.5rem 0.9rem;
     background: var(--mechanicus-black);
     color: var(--mechanicus-text);
     border: 1px solid var(--mechanicus-border);
     border-radius: 2px;
     cursor: pointer;
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.25s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
     font-family: 'Courier New', monospace;
   }
 
-  .filter-btn:hover {
+  .filter-btn-small:hover {
     background: var(--mechanicus-orange-subtle);
     border-color: var(--mechanicus-orange);
     color: var(--mechanicus-white);
   }
 
-  .filter-btn.active {
+  .filter-btn-small.active {
     background: var(--mechanicus-orange-subtle);
     color: var(--mechanicus-white);
     border-color: var(--mechanicus-orange);
     font-weight: 700;
   }
 
-  .filter-btn i {
-    font-size: 0.9rem;
-    opacity: 0.7;
+  .filter-btn-small i {
+    font-size: 0.8rem;
+    margin-right: 0.3rem;
   }
 
-  .search-container {
+  /* Barre de recherche compacte */
+  .search-bar-compact {
+    width: 100%;
+    max-width: 400px;
     position: relative;
   }
 
@@ -250,14 +169,14 @@ order: 3
     top: 50%;
     transform: translateY(-50%);
     color: var(--mechanicus-text-muted);
-    font-size: 1rem;
+    font-size: 0.9rem;
     pointer-events: none;
   }
 
   .post-search {
     width: 100%;
-    padding: 0.85rem 1rem 0.85rem 2.8rem;
-    font-size: 0.95rem;
+    padding: 0.6rem 1rem 0.6rem 2.5rem;
+    font-size: 0.85rem;
     border: 1px solid var(--mechanicus-border);
     border-radius: 2px;
     background: var(--mechanicus-black);
@@ -278,37 +197,50 @@ order: 3
     opacity: 0.6;
   }
 
+  .mechanicus-divider {
+    height: 1px;
+    background: linear-gradient(to right, 
+      transparent, 
+      var(--mechanicus-border) 20%, 
+      var(--mechanicus-border) 80%, 
+      transparent
+    );
+    margin: 2.5rem 1rem;
+  }
+
+  /* TIMELINE - élément principal */
   .timeline-container {
     position: relative;
     padding: 0 1rem;
+    max-width: 900px;
+    margin: 0 auto;
   }
 
   .year-section {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
 
   .year-header {
     position: relative;
-    margin: 3rem 0 2rem 0;
-    padding-left: 3rem;
+    margin: 0 0 2rem 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
-  .year-header::before {
-    content: '';
+  .year-marker {
     position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 12px;
-    height: 12px;
+    left: -3rem;
+    width: 18px;
+    height: 18px;
     background: var(--mechanicus-orange);
     border-radius: 50%;
-    border: 3px solid var(--mechanicus-black);
-    box-shadow: 0 0 0 2px var(--mechanicus-orange);
+    border: 4px solid var(--mechanicus-black);
+    box-shadow: 0 0 0 3px var(--mechanicus-orange);
   }
 
   .year-header h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--mechanicus-white);
     text-transform: uppercase;
@@ -317,42 +249,54 @@ order: 3
     margin: 0;
   }
 
+  .year-count {
+    background: var(--mechanicus-orange-subtle);
+    color: var(--mechanicus-orange);
+    border: 1px solid var(--mechanicus-orange);
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+  }
+
   .posts-list {
     position: relative;
     padding-left: 3rem;
-    border-left: 2px solid var(--mechanicus-border);
-    margin-left: 5px;
+    border-left: 3px solid var(--mechanicus-border);
   }
 
   .post-item {
     position: relative;
-    margin-bottom: 2rem;
-    padding: 1.5rem;
+    margin-bottom: 0.8rem;
+    padding: 0.8rem 1rem;
     background: var(--mechanicus-dark-grey);
     border: 1px solid var(--mechanicus-border);
     border-left: 3px solid var(--mechanicus-orange);
     border-radius: 2px;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: 1rem;
   }
 
   .post-item::before {
     content: '';
     position: absolute;
-    left: -3.9rem;
-    top: 2rem;
+    left: -3.5rem;
+    top: 50%;
+    transform: translateY(-50%);
     width: 8px;
     height: 8px;
     background: var(--mechanicus-white);
     border-radius: 50%;
     border: 2px solid var(--mechanicus-border);
+    transition: all 0.2s ease;
   }
 
   .post-item:hover {
     background: var(--mechanicus-orange-subtle);
-    border-color: var(--mechanicus-orange);
+    border-left-color: var(--mechanicus-orange);
     transform: translateX(5px);
   }
 
@@ -361,57 +305,44 @@ order: 3
     border-color: var(--mechanicus-orange);
   }
 
-  .post-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .post-title-group {
-    flex: 1;
-    min-width: 200px;
+  .post-date {
+    color: var(--mechanicus-text-muted);
+    font-size: 0.75rem;
+    font-family: 'Courier New', monospace;
+    white-space: nowrap;
+    min-width: 90px;
   }
 
   .post-title {
-    font-size: 1.2rem;
-    font-weight: 700;
+    font-size: 0.95rem;
+    font-weight: 600;
     color: var(--mechanicus-white);
     text-decoration: none;
-    display: block;
-    margin-bottom: 0.5rem;
     font-family: 'Courier New', monospace;
-    line-height: 1.3;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .post-title:hover {
     color: var(--mechanicus-orange);
   }
 
-  .post-date {
-    color: var(--mechanicus-text-muted);
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-family: 'Courier New', monospace;
-  }
-
   .post-badges {
     display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
   }
 
   .post-badge {
-    padding: 0.3rem 0.7rem;
+    padding: 0.25rem 0.5rem;
     border-radius: 2px;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     font-family: 'Courier New', monospace;
     white-space: nowrap;
   }
@@ -458,35 +389,10 @@ order: 3
     border-color: #F44336;
   }
 
-  .post-badge.difficulty.insane {
+  .post-badge.difficulty.insane, .post-badge.difficulty.veryeasy {
     background: rgba(156, 39, 176, 0.15);
     color: #9C27B0;
     border-color: #9C27B0;
-  }
-
-  .post-description {
-    color: var(--mechanicus-text);
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
-
-  .post-categories {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--mechanicus-border);
-  }
-
-  .post-category {
-    padding: 0.2rem 0.6rem;
-    background: var(--mechanicus-black);
-    border: 1px solid var(--mechanicus-border);
-    border-radius: 2px;
-    font-size: 0.75rem;
-    color: var(--mechanicus-text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
   }
 
   .no-results {
@@ -516,52 +422,55 @@ order: 3
       letter-spacing: 2px;
     }
 
-    .sort-section {
+    .stats-container {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 0 0.5rem;
+    }
+
+    .filters-row {
       flex-direction: column;
       align-items: stretch;
     }
 
-    .sort-buttons {
+    .filter-group-inline {
       width: 100%;
+      justify-content: center;
     }
 
-    .sort-btn {
-      flex: 1;
-    }
-
-    .stats-container {
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    }
-
-    .filter-buttons {
-      grid-template-columns: repeat(2, 1fr);
+    .search-bar-compact {
+      max-width: 100%;
     }
 
     .year-header h2 {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
     }
 
     .posts-list {
-      padding-left: 2rem;
+      padding-left: 2.5rem;
     }
 
     .post-item {
-      padding: 1.2rem;
+      padding: 0.7rem 0.8rem;
+      flex-wrap: wrap;
     }
 
     .post-item::before {
-      left: -3.2rem;
+      left: -3rem;
+    }
+
+    .post-date {
+      min-width: auto;
+      font-size: 0.7rem;
+    }
+
+    .post-title {
+      font-size: 0.9rem;
+      flex: 1 1 100%;
+      margin-bottom: 0.3rem;
     }
 
     .stat-number {
       font-size: 1.8rem;
-    }
-
-    .filters-section,
-    .mechanicus-divider,
-    .sort-section {
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
     }
 
     .timeline-container {
@@ -580,52 +489,65 @@ order: 3
     }
 
     .stats-container {
-      grid-template-columns: repeat(2, 1fr);
-      padding: 0 0.5rem;
-    }
-
-    .filter-buttons {
       grid-template-columns: 1fr;
+      max-width: 300px;
     }
 
-    .filters-section {
+    .compact-filters {
       padding: 1rem;
+      margin: 0 0.5rem 2rem 0.5rem;
     }
 
-    .sort-buttons {
+    .filter-group-inline {
       flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .filter-btn-small {
+      width: 100%;
+      justify-content: center;
     }
 
     .year-header {
-      padding-left: 2rem;
-      margin: 2rem 0 1.5rem 0;
+      margin-left: 2rem;
+    }
+
+    .year-marker {
+      left: -2rem;
+      width: 14px;
+      height: 14px;
     }
 
     .year-header h2 {
-      font-size: 1.3rem;
-    }
-
-    .year-header::before {
-      width: 10px;
-      height: 10px;
+      font-size: 1.4rem;
     }
 
     .posts-list {
-      padding-left: 1.5rem;
-      margin-left: 3px;
+      padding-left: 2rem;
     }
 
     .post-item::before {
-      left: -2.7rem;
+      left: -2.5rem;
+      width: 6px;
+      height: 6px;
     }
 
     .post-title {
-      font-size: 1.1rem;
+      font-size: 0.85rem;
     }
 
-    .post-header {
-      flex-direction: column;
-      gap: 0.8rem;
+    .post-date {
+      font-size: 0.65rem;
+    }
+
+    .post-badges {
+      gap: 0.3rem;
+    }
+
+    .post-badge {
+      font-size: 0.6rem;
+      padding: 0.2rem 0.4rem;
     }
   }
 
@@ -634,47 +556,26 @@ order: 3
       font-size: 1.4rem;
     }
 
-    .stats-container {
-      grid-template-columns: 1fr;
-    }
-
     .stat-number {
       font-size: 1.6rem;
     }
 
     .post-item {
-      padding: 1rem;
+      padding: 0.6rem;
     }
 
     .post-title {
-      font-size: 1rem;
+      font-size: 0.8rem;
     }
   }
 </style>
 
 <div class="archives-header">
   <h1>ARCHIVES</h1>
-  <p>Chronologie complète de mes write-ups / cours que je post ici pour vous partager mon chemin de pensée ainsi que les cours pour que vous puissiez apprendre aussi avec moi !</p>
+  <p>Chronologie de mon parcours en cybersécurité</p>
 </div>
 
-<!-- Section de tri par date -->
-<div class="sort-section">
-  <span class="sort-label">
-    <i class="fas fa-sort"></i>
-    Tri par date
-  </span>
-  <div class="sort-buttons">
-    <button class="sort-btn active" onclick="sortByDate('recent')" id="btn-sort-recent">
-      <i class="fas fa-arrow-down"></i>
-      <span>Plus récent</span>
-    </button>
-    <button class="sort-btn" onclick="sortByDate('oldest')" id="btn-sort-oldest">
-      <i class="fas fa-arrow-up"></i>
-      <span>Plus ancien</span>
-    </button>
-  </div>
-</div>
-
+<!-- Stats compactes -->
 <div class="stats-container">
   <div class="stat-card">
     <div class="stat-number" id="total-posts">0</div>
@@ -698,137 +599,78 @@ order: 3
   </div>
 </div>
 
-<div class="mechanicus-divider"></div>
+<!-- Filtres compacts -->
+<div class="compact-filters">
+  <div class="filters-row">
+    <!-- Tri temporel -->
+    <div class="filter-group-inline">
+      <span class="filter-label-inline">Tri:</span>
+      <button class="filter-btn-small active" onclick="sortByDate('recent')" id="btn-sort-recent">
+        <i class="fas fa-arrow-down"></i>Récent
+      </button>
+      <button class="filter-btn-small" onclick="sortByDate('oldest')" id="btn-sort-oldest">
+        <i class="fas fa-arrow-up"></i>Ancien
+      </button>
+    </div>
 
-<div class="filters-section">
-  <!-- Filtre 1 : Plateforme -->
-  <div class="filter-group">
-    <span class="filter-label">
-      <span class="filter-label-number">1</span>
-      Plateforme
-    </span>
-    <div class="filter-buttons">
-      <button class="filter-btn platform-btn active" onclick="filterByPlatform('all')" id="btn-platform-all">
-        <i class="fas fa-list"></i>
-        <span>Tous</span>
+    <!-- Plateforme -->
+    <div class="filter-group-inline">
+      <span class="filter-label-inline">Plateforme:</span>
+      <button class="filter-btn-small active" onclick="filterByPlatform('all')" id="btn-platform-all">
+        Tous
       </button>
-      <button class="filter-btn platform-btn" onclick="filterByPlatform('thm')" id="btn-platform-thm">
-        <i class="fas fa-flag"></i>
-        <span>TryHackMe</span>
+      <button class="filter-btn-small" onclick="filterByPlatform('thm')" id="btn-platform-thm">
+        THM
       </button>
-      <button class="filter-btn platform-btn" onclick="filterByPlatform('htb')" id="btn-platform-htb">
-        <i class="fas fa-cube"></i>
-        <span>HackTheBox</span>
+      <button class="filter-btn-small" onclick="filterByPlatform('htb')" id="btn-platform-htb">
+        HTB
+      </button>
+    </div>
+
+    <!-- Type -->
+    <div class="filter-group-inline">
+      <span class="filter-label-inline">Type:</span>
+      <button class="filter-btn-small active" onclick="filterByType('all')" id="btn-type-all">
+        Tous
+      </button>
+      <button class="filter-btn-small" onclick="filterByType('learning')" id="btn-type-learning">
+        Learning
+      </button>
+      <button class="filter-btn-small" onclick="filterByType('challenge')" id="btn-type-challenge">
+        Challenge
       </button>
     </div>
   </div>
 
-  <div class="mechanicus-divider" style="margin: 1.5rem 0;"></div>
-
-  <!-- Filtre 2 : Type -->
-  <div class="filter-group">
-    <span class="filter-label">
-      <span class="filter-label-number">2</span>
-      Type
-    </span>
-    <div class="filter-buttons">
-      <button class="filter-btn type-btn active" onclick="filterByType('all')" id="btn-type-all">
-        <i class="fas fa-list"></i>
-        <span>Tous</span>
-      </button>
-      <button class="filter-btn type-btn" onclick="filterByType('learning')" id="btn-type-learning">
-        <i class="fas fa-graduation-cap"></i>
-        <span>Learning</span>
-      </button>
-      <button class="filter-btn type-btn" onclick="filterByType('challenge')" id="btn-type-challenge">
-        <i class="fas fa-puzzle-piece"></i>
-        <span>Challenges</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="mechanicus-divider" style="margin: 1.5rem 0;"></div>
-
-  <!-- Filtre 3 : Difficulté (TryHackMe) -->
-  <div class="filter-group" id="thm-difficulty" style="display: none;">
-    <span class="filter-label">
-      <span class="filter-label-number">3</span>
-      Difficulté - TryHackMe
-    </span>
-    <div class="filter-buttons">
-      <button class="filter-btn difficulty-btn active" onclick="filterByDifficulty('all')" id="btn-difficulty-all">
-        <i class="fas fa-list"></i>
-        <span>Tous</span>
-      </button>
-      <button class="filter-btn difficulty-btn" onclick="filterByDifficulty('easy')" id="btn-difficulty-easy">
-        <span>Easy</span>
-      </button>
-      <button class="filter-btn difficulty-btn" onclick="filterByDifficulty('medium')" id="btn-difficulty-medium">
-        <span>Medium</span>
-      </button>
-      <button class="filter-btn difficulty-btn" onclick="filterByDifficulty('hard')" id="btn-difficulty-hard">
-        <span>Hard</span>
-      </button>
-      <button class="filter-btn difficulty-btn" onclick="filterByDifficulty('insane')" id="btn-difficulty-insane">
-        <span>Insane</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Filtre 3 : Difficulté (HackTheBox) -->
-  <div class="filter-group" id="htb-difficulty" style="display: none;">
-    <span class="filter-label">
-      <span class="filter-label-number">3</span>
-      Difficulté - HackTheBox
-    </span>
-    <div class="filter-buttons">
-      <button class="filter-btn difficulty-btn active" onclick="filterByDifficulty('all')" id="btn-difficulty-all">
-        <i class="fas fa-list"></i>
-        <span>Tous</span>
-      </button>
-      <button class="filter-btn difficulty-btn" onclick="filterByDifficulty('veryeasy')" id="btn-difficulty-veryeasy">
-        <span>Very Easy</span>
-      </button>
-      <button class="filter-btn difficulty-btn" onclick="filterByDifficulty('easy')" id="btn-difficulty-easy">
-        <span>Easy</span>
-      </button>
-      <button class="filter-btn difficulty-btn" onclick="filterByDifficulty('medium')" id="btn-difficulty-medium">
-        <span>Medium</span>
-      </button>
-      <button class="filter-btn difficulty-btn" onclick="filterByDifficulty('hard')" id="btn-difficulty-hard">
-        <span>Hard</span>
-      </button>
-      <button class="filter-btn difficulty-btn" onclick="filterByDifficulty('insane')" id="btn-difficulty-insane">
-        <span>Insane</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="mechanicus-divider" style="margin: 1.5rem 0;"></div>
+  <div class="mechanicus-divider" style="margin: 1rem 0;"></div>
 
   <!-- Recherche -->
-  <div class="filter-group">
-    <span class="filter-label">Recherche</span>
-    <div class="search-container">
+  <div class="filters-row">
+    <div class="search-bar-compact">
       <i class="fas fa-search search-icon"></i>
       <input 
         type="text" 
         class="post-search" 
         id="post-search" 
-        placeholder="Rechercher un write-up..."
+        placeholder="Rechercher..."
         onkeyup="searchPosts()"
       >
     </div>
   </div>
 </div>
 
+<div class="mechanicus-divider"></div>
+
+<!-- TIMELINE CHRONOLOGIQUE - ÉLÉMENT PRINCIPAL -->
 <div class="timeline-container">
   {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
   
   {% for year_group in posts_by_year %}
     <div class="year-section" data-year="{{ year_group.name }}">
       <div class="year-header">
+        <div class="year-marker"></div>
         <h2>{{ year_group.name }}</h2>
+        <span class="year-count">{{ year_group.items.size }}</span>
       </div>
 
       <div class="posts-list">
@@ -866,42 +708,27 @@ order: 3
                data-title="{{ post.title | downcase }}"
                data-timestamp="{{ post.date | date: '%s' }}">
             
-            <div class="post-header">
-              <div class="post-title-group">
-                <a href="{{ post.url }}" class="post-title">{{ post.title }}</a>
-                <div class="post-date">{{ post.date | date: "%d %B %Y" }}</div>
-              </div>
+            <div class="post-date">{{ post.date | date: "%d %b %Y" }}</div>
+            
+            <a href="{{ post.url }}" class="post-title">{{ post.title }}</a>
 
-              <div class="post-badges">
-                {% if platform == "thm" %}
-                  <span class="post-badge platform">THM</span>
-                {% elsif platform == "htb" %}
-                  <span class="post-badge platform htb">HTB</span>
-                {% endif %}
+            <div class="post-badges">
+              {% if platform == "thm" %}
+                <span class="post-badge platform">THM</span>
+              {% elsif platform == "htb" %}
+                <span class="post-badge platform htb">HTB</span>
+              {% endif %}
 
-                {% if type == "learning" %}
-                  <span class="post-badge type">Learning</span>
-                {% elsif type == "challenge" %}
-                  <span class="post-badge type">Challenge</span>
-                {% endif %}
+              {% if type == "learning" %}
+                <span class="post-badge type">Learning</span>
+              {% elsif type == "challenge" %}
+                <span class="post-badge type">Challenge</span>
+              {% endif %}
 
-                {% if difficulty != "none" %}
-                  <span class="post-badge difficulty {{ difficulty }}">{{ difficulty | capitalize | replace: "Veryeasy", "Very Easy" }}</span>
-                {% endif %}
-              </div>
+              {% if difficulty != "none" %}
+                <span class="post-badge difficulty {{ difficulty }}">{{ difficulty | capitalize | replace: "Veryeasy", "Very Easy" }}</span>
+              {% endif %}
             </div>
-
-            {% if post.description %}
-              <p class="post-description">{{ post.description }}</p>
-            {% endif %}
-
-            {% if post.categories.size > 0 %}
-              <div class="post-categories">
-                {% for category in post.categories %}
-                  <span class="post-category">{{ category }}</span>
-                {% endfor %}
-              </div>
-            {% endif %}
           </div>
         {% endfor %}
       </div>
