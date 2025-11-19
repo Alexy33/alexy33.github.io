@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Introuvable | Alexy's Blog</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --mechanicus-orange: #ff6b00;
+      --mechanicus-orange-subtle: rgba(255, 107, 0, 0.15);
+      --mechanicus-black: #0a0a0a;
+      --mechanicus-dark-grey: #1a1a1a;
+      --mechanicus-white: #ffffff;
+      --mechanicus-text: #e8e8e8;
+      --mechanicus-text-muted: #a0a0a0;
+      --mechanicus-border: #2a2a2a;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--mechanicus-black);
+      color: var(--mechanicus-text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .error-container {
+      text-align: center;
+      max-width: 700px;
+      width: 100%;
+    }
+
+    .error-code {
+      font-size: 8rem;
+      font-weight: 700;
+      color: var(--mechanicus-orange);
+      font-family: 'Courier New', monospace;
+      margin: 0;
+      text-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
+      line-height: 1;
+    }
+
+    .error-icon {
+      font-size: 5rem;
+      color: var(--mechanicus-orange);
+      margin: 2rem 0;
+      opacity: 0.6;
+    }
+
+    .error-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--mechanicus-white);
+      margin: 2rem 0 1rem 0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .error-message {
+      font-size: 1.1rem;
+      color: var(--mechanicus-text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .mechanicus-quote {
+      font-style: italic;
+      color: var(--mechanicus-text-muted);
+      border-left: 3px solid var(--mechanicus-orange);
+      padding: 1rem 1.5rem;
+      margin: 2rem 0;
+      background: var(--mechanicus-dark-grey);
+      border-radius: 3px;
+      text-align: left;
+    }
+
+    .mechanicus-quote small {
+      display: block;
+      margin-top: 0.5rem;
+      opacity: 0.7;
+    }
+
+    .error-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+
+    .error-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.8rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .error-btn.primary {
+      background: var(--mechanicus-orange);
+      color: var(--mechanicus-white);
+      border: 2px solid var(--mechanicus-orange);
+    }
+
+    .error-btn.primary:hover {
+      background: var(--mechanicus-white);
+      color: var(--mechanicus-black);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+    }
+
+    .error-btn.secondary {
+      background: transparent;
+      color: var(--mechanicus-text);
+      border: 2px solid var(--mechanicus-border);
+    }
+
+    .error-btn.secondary:hover {
+      background: var(--mechanicus-orange-subtle);
+      border-color: var(--mechanicus-orange);
+      color: var(--mechanicus-white);
+      transform: translateY(-2px);
+    }
+
+    .suggestions {
+      margin-top: 3rem;
+      text-align: left;
+      background: var(--mechanicus-dark-grey);
+      border: 1px solid var(--mechanicus-border);
+      border-left: 3px solid var(--mechanicus-orange);
+      padding: 1.5rem;
+      border-radius: 3px;
+    }
+
+    .suggestions h3 {
+      font-size: 1.2rem;
+      color: var(--mechanicus-white);
+      margin: 0 0 1rem 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .suggestions ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .suggestions li {
+      margin-bottom: 0.8rem;
+    }
+
+    .suggestions a {
+      color: var(--mechanicus-text);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .suggestions a:hover {
+      color: var(--mechanicus-orange);
+    }
+
+    .suggestions a i {
+      color: var(--mechanicus-orange);
+      font-size: 0.9rem;
+    }
+
+    .tech-priest-container {
+      margin: 3rem 0;
+      opacity: 0.5;
+    }
+
+    .tech-priest-container img {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    @keyframes glitch {
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+    }
+
+    .error-code:hover {
+      animation: glitch 0.3s ease-in-out;
+    }
+
+    @media (max-width: 768px) {
+      .error-code {
+        font-size: 6rem;
+      }
+
+      .error-icon {
+        font-size: 4rem;
+      }
+
+      .error-title {
+        font-size: 1.6rem;
+      }
+
+      .error-message {
+        font-size: 1rem;
+      }
+
+      .error-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .error-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 1rem;
+      }
+
+      .error-code {
+        font-size: 5rem;
+      }
+
+      .error-title {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="error-container">
+    <div class="error-code">404</div>
+    
+    <div class="error-icon">
+      <i class="fas fa-exclamation-triangle"></i>
+    </div>
+
+    <h1 class="error-title">Donnée Non Trouvée</h1>
+    
+    <p class="error-message">
+      La page que vous recherchez semble avoir été corrompue dans les archives de l'Omnissiah. 
+      Les serviteurs-cranes ont échoué à localiser ces données dans le réseau sacré.
+    </p>
+
+    <div class="mechanicus-quote">
+      "L'erreur dans le code est l'hérésie dans la machine. Seule la restauration du chemin ramène l'harmonie."
+      <small>— Litanie de Restauration des Données</small>
+    </div>
+
+    <div class="error-actions">
+      <a href="/" class="error-btn primary">
+        <i class="fas fa-home"></i>
+        Retour à l'accueil
+      </a>
+      <a href="/archives/" class="error-btn secondary">
+        <i class="fas fa-archive"></i>
+        Voir les archives
+      </a>
+    </div>
+
+    <div class="suggestions">
+      <h3>Suggestions de Navigation</h3>
+      <ul>
+        <li>
+          <a href="/categories/">
+            <i class="fas fa-folder"></i>
+            Parcourir par catégories
+          </a>
+        </li>
+        <li>
+          <a href="/tags/">
+            <i class="fas fa-tags"></i>
+            Explorer les tags
+          </a>
+        </li>
+        <li>
+          <a href="/about/">
+            <i class="fas fa-info-circle"></i>
+            En savoir plus sur moi
+          </a>
+        </li>
+        <li>
+          <a href="/roadmap.sh/">
+            <i class="fas fa-route"></i>
+            Voir ma roadmap
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="tech-priest-container">
+      <img src="https://media1.tenor.com/m/YtPE3tZphuQAAAAC/warhammer-40k.gif" alt="Tech-Priest">
+    </div>
+  </div>
+
+  <script>
+    const errorCode = document.querySelector('.error-code');
+    
+    setInterval(() => {
+      if (Math.random() > 0.95) {
+        errorCode.style.opacity = '0.5';
+        setTimeout(() => {
+          errorCode.style.opacity = '1';
+        }, 50);
+      }
+    }, 2000);
+  </script>
+</body>
+</html>
