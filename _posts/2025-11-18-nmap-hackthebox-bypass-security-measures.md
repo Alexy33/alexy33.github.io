@@ -1,5 +1,5 @@
 ---
-title: "HackTheBox - Bypass Security Measures"
+title: "HackTheBox - Nmap Bypass Security Measures"
 date: 2025-11-18 17:58:00 +0200
 categories: [HackTheBox, Learning]
 tags: [nmap, firewall, ids, ips, evasion, network-security, scanning]

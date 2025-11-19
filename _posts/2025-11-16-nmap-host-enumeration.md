@@ -1,5 +1,5 @@
 ---
-title: "HackTheBox - Host Enumeration avec Nmap"
+title: "HackTheBox - Nmap Host Enumeration avec Nmap"
 date: 2025-11-16 19:59:00 +0200
 categories: [HackTheBox, Learning]
 tags: [nmap, enumeration, networking]

@@ -1,5 +1,5 @@
 ---
-title: "HackTheBox - NMAP introduction"
+title: "HackTheBox - Nmap introduction"
 date: 2025-11-14 14:46:00 +0200
 categories: [HackTheBox, Learning]
 tags: [learning]
