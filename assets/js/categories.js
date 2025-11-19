@@ -1,35 +1,39 @@
-// categories.js - Gestion des statistiques de la page catégories
-
+// Categories page - Version ultra minimale
 document.addEventListener('DOMContentLoaded', function() {
-  // Récupérer tous les éléments de posts sur la page
-  const categoryLists = document.querySelectorAll('.category-list');
+  console.log('✅ Page Classifications chargée');
   
-  let totalPosts = 0;
-  let thmPosts = 0;
-  let htbPosts = 0;
+  // Récupérer les compteurs affichés
+  const typeSections = document.querySelectorAll('.type-section');
   
-  // Parcourir chaque liste de catégories
-  categoryLists.forEach(list => {
-    const categoryName = list.querySelector('.category-name')?.textContent.toLowerCase() || '';
-    const postCount = list.querySelectorAll('.post-preview').length;
+  let thmLearning = 0;
+  let thmChallenge = 0;
+  let htbLearning = 0;
+  let htbChallenge = 0;
+  
+  typeSections.forEach((section, index) => {
+    const count = parseInt(section.querySelector('.type-count').textContent);
     
-    totalPosts += postCount;
-    
-    if (categoryName.includes('tryhackme') || categoryName.includes('thm')) {
-      thmPosts += postCount;
-    } else if (categoryName.includes('hackthebox') || categoryName.includes('htb')) {
-      htbPosts += postCount;
-    }
+    if (index === 0) thmLearning = count;
+    if (index === 1) thmChallenge = count;
+    if (index === 2) htbLearning = count;
+    if (index === 3) htbChallenge = count;
   });
   
-  // Mettre à jour les compteurs si les éléments existent
-  const totalElement = document.getElementById('total-posts');
-  const thmElement = document.getElementById('thm-posts');
-  const htbElement = document.getElementById('htb-posts');
+  console.log('📊 Statistiques:');
+  console.log(`   THM Learning: ${thmLearning} posts`);
+  console.log(`   THM Challenge: ${thmChallenge} posts`);
+  console.log(`   HTB Learning: ${htbLearning} posts`);
+  console.log(`   HTB Challenge: ${htbChallenge} posts`);
+  console.log(`   Total: ${thmLearning + thmChallenge + htbLearning + htbChallenge} posts`);
   
-  if (totalElement) totalElement.textContent = totalPosts;
-  if (thmElement) thmElement.textContent = thmPosts;
-  if (htbElement) htbElement.textContent = htbPosts;
+  // Animation légère au survol
+  const platformFolders = document.querySelectorAll('.platform-folder');
+  platformFolders.forEach(folder => {
+    folder.style.transition = 'all 0.3s ease';
+  });
   
-  console.log('Stats calculées:', { total: totalPosts, thm: thmPosts, htb: htbPosts });
+  const typeSectionsAll = document.querySelectorAll('.type-section');
+  typeSectionsAll.forEach(section => {
+    section.style.transition = 'all 0.3s ease';
+  });
 });
