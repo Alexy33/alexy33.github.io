@@ -1,7 +1,7 @@
 ---
 title: "TryHackMe - Metasploit Meterpreter"
 date: 2025-10-18 00:27:00 +0200
-categories: [TryHackMe, Learning, Metasploit]
+categories: [TryHackMe, Learning]
 tags: [reverse-shell, exploitation, msfconsole, meterpreter, enumeration]
 description: "Write-up de la room Metasploit Meterpreter - Approfondir nos connaissances sur le Framework Metasploit (Partie 3 sur 3)"
 image:

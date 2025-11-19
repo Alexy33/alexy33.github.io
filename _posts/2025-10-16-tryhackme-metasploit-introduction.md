@@ -1,7 +1,7 @@
 ---
 title: "TryHackMe - Metasploit Introduction"
 date: 2025-10-16 01:11:00 +0200
-categories: [TryHackMe, Learning, Metasploit]
+categories: [TryHackMe, Learning]
 tags: [reverse-shell, exploitation, msfconsole, meterpreter, enumeration]
 description: "Write-up de la room Metasploit Introduction - apprendre à utiliser et maîtriser le Framework Metasploit (Partie 1 sur 3)"
 image:
