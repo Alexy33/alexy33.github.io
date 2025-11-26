@@ -4549,8 +4549,6 @@ Pour que SNMP fonctionne entre différents fabricants et systèmes, deux concept
 
 Exemple d'OID : `.1.3.6.1.2.1.1.4.0`
 
-Pour explorer les OID, consulter l'[Object Identifier Registry](http://www.oid-info.com/).
-
 ### Les versions de SNMP
 
 #### SNMPv1
