@@ -2,23 +2,23 @@
   "username": "Arcony",
   "path_id": 16,
   "path_name": "Penetration Tester",
-  "last_updated": "2025-11-30T06:23:10.737822",
-  "overall_progress": 10,
-  "completed_modules": 3,
+  "last_updated": "2025-12-01T06:26:38.726948",
+  "overall_progress": 14,
+  "completed_modules": 4,
   "total_modules": 28,
-  "current_module": "Footprinting",
+  "current_module": "Information Gathering - Web Edition",
   "modules": [
     {
-      "id": 112,
-      "name": "Footprinting",
-      "slug": "footprinting",
-      "progress": 90.48,
+      "id": 144,
+      "name": "Information Gathering - Web Edition",
+      "slug": "information-gathering---web-edition",
+      "progress": 0,
       "state": "in_progress",
-      "sections_count": 21,
-      "current_section_id": 1079,
-      "difficulty": "Medium",
+      "sections_count": 19,
+      "current_section_id": 1247,
+      "difficulty": "Easy",
       "tier": "Tier II",
-      "estimated_time": "2 days"
+      "estimated_time": "8 hours"
     },
     {
       "id": 90,
@@ -55,6 +55,18 @@
       "difficulty": "Easy",
       "tier": "Tier I",
       "estimated_time": "7 hours"
+    },
+    {
+      "id": 112,
+      "name": "Footprinting",
+      "slug": "footprinting",
+      "progress": 100,
+      "state": "owned",
+      "sections_count": 21,
+      "current_section_id": null,
+      "difficulty": "Medium",
+      "tier": "Tier II",
+      "estimated_time": "2 days"
     }
   ]
 }
