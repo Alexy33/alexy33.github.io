@@ -2,23 +2,23 @@
   "username": "Arcony",
   "path_id": 16,
   "path_name": "Penetration Tester",
-  "last_updated": "2025-12-11T06:26:54.728891",
-  "overall_progress": 14,
-  "completed_modules": 4,
+  "last_updated": "2025-12-12T06:26:05.113831",
+  "overall_progress": 17,
+  "completed_modules": 5,
   "total_modules": 28,
-  "current_module": "Information Gathering - Web Edition",
+  "current_module": "Vulnerability Assessment",
   "modules": [
     {
-      "id": 144,
-      "name": "Information Gathering - Web Edition",
-      "slug": "information-gathering---web-edition",
-      "progress": 78.95,
+      "id": 108,
+      "name": "Vulnerability Assessment",
+      "slug": "vulnerability-assessment",
+      "progress": 0,
       "state": "in_progress",
-      "sections_count": 19,
-      "current_section_id": 3080,
+      "sections_count": 17,
+      "current_section_id": 1160,
       "difficulty": "Easy",
-      "tier": "Tier II",
-      "estimated_time": "8 hours"
+      "tier": "Tier 0",
+      "estimated_time": "2 hours"
     },
     {
       "id": 90,
@@ -67,6 +67,18 @@
       "difficulty": "Medium",
       "tier": "Tier II",
       "estimated_time": "2 days"
+    },
+    {
+      "id": 144,
+      "name": "Information Gathering - Web Edition",
+      "slug": "information-gathering---web-edition",
+      "progress": 100,
+      "state": "owned",
+      "sections_count": 19,
+      "current_section_id": null,
+      "difficulty": "Easy",
+      "tier": "Tier II",
+      "estimated_time": "8 hours"
     }
   ]
 }
