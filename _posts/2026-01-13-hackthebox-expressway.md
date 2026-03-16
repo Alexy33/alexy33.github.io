@@ -1,7 +1,7 @@
 ---
 title: "HackTheBox - Expressway"
 date: 2026-02-13 14:00:00 +0200
-categories: [HackTheBox, Machines]
+categories: [HackTheBox, Challenge, Easy]
 tags: [ipsec, ike-scan, vpn, strongswan, psk-crack, squid, sudo, cve-2025-32463, privilege-escalation]
 description: "Write-up de la machine Expressway - Exploitation d'un VPN IPsec, cracking de Pre-Shared Key et escalade de privilèges via CVE-2025-32463 (sudo chroot)"
 image:
@@ -11,12 +11,12 @@ image:
 
 ## Informations sur la machine
 
-| Propriété    | Valeur           |
-|-------------|------------------|
-| **OS**      | Linux            |
-| **Difficulté** | Easy        |
-| **Points**  | 20               |
-| **IP**      | 10.129.3.110     |
+| Propriété      | Valeur       |
+| -------------- | ------------ |
+| **OS**         | Linux        |
+| **Difficulté** | Easy         |
+| **Points**     | 20           |
+| **IP**         | 10.129.3.110 |
 
 ---
 
